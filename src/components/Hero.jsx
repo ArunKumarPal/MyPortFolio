@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import backgroundImage from "../pick/background.jpg";
+import myPhoto from "../pick/fs.jpg";
 
 // =========================
 // Styled Components
@@ -18,7 +20,7 @@ const HeroContainer = styled.section`
 const Background = styled.div`
   position: absolute;
   inset: 0;
-  background: url("https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=1920")
+  background: url(${backgroundImage})
     center/cover no-repeat;
   filter: brightness(${(p) => (p.$dim ? 0.45 : 0.6)});
   transition: filter 0.8s ease;
@@ -262,7 +264,7 @@ export default function Hero() {
           <BlobFrame />
           <InnerFrame>
             <Photo
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop"
+              src={myPhoto}
               alt="Arun Pal - Backend Engineer"
             />
           </InnerFrame>

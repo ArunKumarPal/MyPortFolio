@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import myPhoto from "../pick/myphoto.jpg";
 
 // =========================
 // Styled Components
@@ -121,7 +122,7 @@ export default function About() {
           transition={{ duration: 0.9 }}
         >
           <AboutPhoto
-            src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=700&h=880&fit=crop"
+            src={myPhoto}
             alt="About Me"
           />
         </ImageWrapper>
