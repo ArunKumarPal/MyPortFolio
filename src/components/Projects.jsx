@@ -189,9 +189,9 @@ export default function Projects() {
                 <Btn href={p.repo} target="_blank">
                   <FaGithub /> Code
                 </Btn>
-                <Btn href={p.demo} target="_blank">
+                {/* <Btn href={p.demo} target="_blank">
                   <FaExternalLinkAlt /> Demo
-                </Btn>
+                </Btn> */}
               </Buttons>
             </Card>
           ))}
