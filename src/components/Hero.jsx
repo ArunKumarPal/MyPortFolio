@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import backgroundImage from "../pick/background.jpg";
-import myPhoto from "../pick/fs.jpg";
+import myPhoto from "../pick/myphoto.jpg";
+import resumePDF from "../pick/ARUN_RESUME.pdf";
 
 // =========================
 // Styled Components
@@ -248,7 +249,7 @@ export default function Hero() {
 
           <ButtonRow>
             <PrimaryBtn href="#contact">Contact Me</PrimaryBtn>
-            <OutlineBtn href="/ArunPal-Resume.pdf" download>
+            <OutlineBtn href={resumePDF} download="Arun_Pal_Resume.pdf">
               Download Resume
             </OutlineBtn>
           </ButtonRow>

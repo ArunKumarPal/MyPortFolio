@@ -3,6 +3,22 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaAward, FaCertificate, FaTrophy, FaMedal } from "react-icons/fa";
 
+// Import award images
+import spotAwardNov2023 from "../pick/awards/spot-Nov-2023.jpg";
+import spotAwardJune2022 from "../pick/awards/spot-Jun-2022.jpg";
+import stellarJan2023 from "../pick/awards/steller-Jan-2023.jpg";
+import stellarJan2022 from "../pick/awards/steller-Jan-2022.jpg";
+import teamAwardQ1_2024 from "../pick/awards/team-Q1-2024.jpg";
+
+// Import certificate images
+import awsCert from "../pick/certificates/aws.png";
+import pythonCert from "../pick/certificates/python.png";
+import regexCert from "../pick/certificates/regex.jpg";
+import springBootCert from "../pick/certificates/springboot.png";
+import jenkinsCert from "../pick/certificates/jenkins.jpg";
+import dockerCert from "../pick/certificates/docker.png";
+import androidCert from "../pick/certificates/andriod.jpg";
+
 // ================= Styled Components =================
 
 const Section = styled.section`
@@ -179,56 +195,110 @@ export default function Certifications() {
         id: 1,
         title: "Spot Award",
         issuer: "Precisely Software & Data",
-        date: "2024",
-        description: "Recognized for exceptional performance and immediate impact on critical project delivery.",
-        image: null, // Add: import spotAward from "../pick/spot-award.jpg"
+        date: "November 2023",
+        description: "Recognized for exceptional performance and immediate impact on critical project delivery and technical excellence.",
+        image: spotAwardNov2023,
         icon: <FaTrophy />
       },
       {
         id: 2,
-        title: "Stellar Award",
+        title: "Spot Award",
         issuer: "Precisely Software & Data",
-        date: "2023",
-        description: "Awarded for outstanding contribution to system architecture and performance optimization.",
-        image: null, // Add: import stellarAward from "../pick/stellar-award.jpg"
-        icon: <FaMedal />
+        date: "June 2022",
+        description: "Awarded for outstanding contribution and going above and beyond in delivering high-quality solutions under tight deadlines.",
+        image: spotAwardJune2022,
+        icon: <FaTrophy />
       },
       {
         id: 3,
-        title: "Best Performer Award",
+        title: "Stellar Performer Award",
         issuer: "Precisely Software & Data",
-        date: "2022",
-        description: "Recognized as best performer for consistent delivery excellence and technical leadership.",
-        image: null, // Add: import bestPerformer from "../pick/best-performer.jpg"
+        date: "January 2023",
+        description: "Recognized as Stellar Performer for outstanding contribution to system architecture, performance optimization, and technical leadership.",
+        image: stellarJan2023,
+        icon: <FaMedal />
+      },
+      {
+        id: 4,
+        title: "Stellar Performer Award",
+        issuer: "Precisely Software & Data",
+        date: "January 2022",
+        description: "Awarded Stellar Performer for exceptional technical expertise, consistent delivery excellence, and mentoring team members.",
+        image: stellarJan2022,
+        icon: <FaMedal />
+      },
+      {
+        id: 5,
+        title: "Team Award",
+        issuer: "Precisely Software & Data",
+        date: "Q1 2024",
+        description: "Team recognition for outstanding collaboration, innovation, and successful delivery of major project milestones.",
+        image: teamAwardQ1_2024,
         icon: <FaAward />
       }
     ],
     certifications: [
       {
-        id: 4,
-        title: "AWS Certified Solutions Architect",
-        issuer: "Amazon Web Services",
-        date: "2023",
-        description: "Certified in designing distributed systems on AWS with high availability and fault tolerance.",
-        image: null, // Add your certificate image
-        icon: <FaCertificate />
-      },
-      {
-        id: 5,
-        title: "Java Spring Boot Microservices",
-        issuer: "Udemy / Coursera",
-        date: "2022",
-        description: "Completed comprehensive training on building scalable microservices with Spring Boot.",
-        image: null, // Add your certificate image
-        icon: <FaCertificate />
-      },
-      {
         id: 6,
-        title: "Temporal Workflow Orchestration",
-        issuer: "Temporal Technologies",
+        title: "AWS Certified Cloud Practitioner",
+        issuer: "Udemy",
         date: "2023",
-        description: "Certified in building fault-tolerant distributed applications using Temporal workflows.",
-        image: null, // Add your certificate image
+        description: "Comprehensive AWS Cloud fundamentals covering core services, architecture, security, and pricing models.",
+        image: awsCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 7,
+        title: "Python Programming Masterclass",
+        issuer: "Udemy",
+        date: "2022",
+        description: "Complete Python course covering advanced programming concepts, data structures, and real-world applications.",
+        image: pythonCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 8,
+        title: "Regular Expressions (Regex) Mastery",
+        issuer: "Udemy",
+        date: "2022",
+        description: "Advanced regex patterns and techniques for text processing, validation, and data extraction.",
+        image: regexCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 9,
+        title: "Spring Boot Microservices",
+        issuer: "Udemy",
+        date: "2023",
+        description: "Building scalable microservices with Spring Boot, Spring Cloud, REST APIs, and distributed systems architecture.",
+        image: springBootCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 10,
+        title: "Jenkins CI/CD Pipeline",
+        issuer: "Udemy",
+        date: "2023",
+        description: "Continuous integration and deployment automation with Jenkins, pipelines, and DevOps best practices.",
+        image: jenkinsCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 11,
+        title: "Docker Certified Associate",
+        issuer: "KodeKloud",
+        date: "2022",
+        description: "Container orchestration, Docker architecture, image management, and containerization best practices.",
+        image: dockerCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 12,
+        title: "Android App Development",
+        issuer: "AndroJava - Class Time Training",
+        date: "2021",
+        description: "Mobile app development with Android SDK, Java, UI/UX design, and application lifecycle management.",
+        image: androidCert,
         icon: <FaCertificate />
       }
     ]
