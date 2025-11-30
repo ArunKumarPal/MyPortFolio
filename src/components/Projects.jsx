@@ -129,8 +129,8 @@ export default function Projects() {
     {
       name: "Personal Portfolio Website",
       desc: "A modern, animated portfolio featuring React, Styled Components, Framer Motion, and EmailJS with sections like About, Skills, Experience, Education, and Contact.",
-      repo: "https://github.com/ArunKumarPal/Portfillio",
-      demo: "#",
+      repo: "https://github.com/ArunKumarPal/MyPortFolio",
+      demo: "https://arunpal.vercel.app/",
       tech: ["React", "Framer Motion", "Styled Components", "EmailJS"]
     },
     {
@@ -189,9 +189,11 @@ export default function Projects() {
                 <Btn href={p.repo} target="_blank">
                   <FaGithub /> Code
                 </Btn>
-                {/* <Btn href={p.demo} target="_blank">
-                  <FaExternalLinkAlt /> Demo
-                </Btn> */}
+                {p.demo !== "#" && (
+                  <Btn href={p.demo} target="_blank">
+                    <FaExternalLinkAlt /> Demo
+                  </Btn>
+                )}
               </Buttons>
             </Card>
           ))}
