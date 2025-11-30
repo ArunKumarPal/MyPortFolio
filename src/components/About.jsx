@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import myPhoto from "../pick/myphoto.jpg";
 
 // =========================
 // Styled Components
@@ -10,7 +9,7 @@ import myPhoto from "../pick/myphoto.jpg";
 const Section = styled.section`
   padding: 6rem 3rem;
   background: #f7f9fc;
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
 
@@ -20,24 +19,16 @@ const Section = styled.section`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1300px;
+  max-width: 900px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+  text-align: center;
 `;
 
 const Heading = styled.h2`
   font-size: 3rem;
   font-weight: 700;
   color: #1c1c1c;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 
   span {
     color: #1457c6;
@@ -52,26 +43,8 @@ const Paragraph = styled.p`
   font-size: 1.15rem;
   line-height: 1.8;
   color: #444;
-  margin-bottom: 1.2rem;
-`;
-
-const ImageWrapper = styled(motion.div)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const AboutPhoto = styled.img`
-  width: 380px;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-
-  @media (max-width: 900px) {
-    width: 300px;
-    height: 360px;
-  }
+  margin-bottom: 1.5rem;
+  text-align: left;
 `;
 
 // =========================
@@ -82,8 +55,6 @@ export default function About() {
   return (
     <Section id="about">
       <Wrapper>
-        
-        {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,38 +66,36 @@ export default function About() {
           </Heading>
 
           <Paragraph>
-            I’m a Senior Backend Engineer with 7+ years of experience designing,
-            building, and optimizing scalable, high-performance systems. I specialize
-            in Java, Spring Boot, Micronaut, Microservices, and cloud-native
-            architectures on Docker & Kubernetes.
+            I'm a Senior Software Engineer I with 7+ years of experience specializing in 
+            building enterprise-grade backend systems, microservices architectures, and 
+            distributed applications. Currently at Precisely Software & Data, I architect 
+            and develop scalable APIs that process millions of requests while maintaining 
+            optimal performance and reliability.
           </Paragraph>
 
           <Paragraph>
-            My work spans distributed system design, API gateway engineering, large-scale
-            data processing, workflow orchestration, and performance optimization across
-            AWS and GCP. I enjoy solving complex backend problems and crafting systems
-            that scale reliably.
+            My expertise spans the entire backend ecosystem - from designing fault-tolerant 
+            workflows with Temporal, implementing secure API gateways with JWT authentication 
+            and rate limiting, to orchestrating large-scale data processing pipelines with 
+            Kafka and Redis. I've reduced production issues by 40% through rigorous code 
+            reviews and improved API response times by 30% using intelligent caching and 
+            optimization strategies.
           </Paragraph>
 
           <Paragraph>
-            Beyond engineering, I focus on writing maintainable code, improving platform
-            reliability, and delivering long-term architectural value.
+            I'm passionate about cloud-native technologies, having deployed and optimized 
+            systems on AWS, GCP, and Azure. Whether it's building OpenAPI test frameworks, 
+            processing bulk CSV files with intelligent chunking, or mentoring teams on 
+            SOLID principles and microservices patterns - I thrive on solving complex 
+            technical challenges that deliver real business value.
+          </Paragraph>
+
+          <Paragraph>
+            Beyond coding, I believe in writing clean, maintainable code, comprehensive 
+            documentation, and building systems that scale gracefully. My open-source 
+            projects reflect my commitment to quality engineering and continuous learning.
           </Paragraph>
         </motion.div>
-
-        {/* RIGHT IMAGE */}
-        <ImageWrapper
-          initial={{ opacity: 0, scale: 0.85 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-        >
-          <AboutPhoto
-            src={myPhoto}
-            alt="About Me"
-          />
-        </ImageWrapper>
-
       </Wrapper>
     </Section>
   );
