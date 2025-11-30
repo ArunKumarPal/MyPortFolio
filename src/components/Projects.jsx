@@ -176,6 +176,7 @@ export default function Projects() {
   const projects = [
     {
       name: "Personal Portfolio Website",
+      shortName: "Portfolio",
       category: "Frontend • React • Live Demo",
       desc: "A modern, responsive portfolio showcasing professional experience, skills, and projects with smooth animations and interactive UI components.",
       features: [
@@ -190,6 +191,7 @@ export default function Projects() {
     },
     {
       name: "Temporal Manager API",
+      shortName: "Job Manager",
       category: "Backend • Microservices • Job Processing",
       desc: "Enterprise-grade job processing system managing CSV file uploads, processing, and result retrieval with Temporal workflow orchestration for reliable execution.",
       features: [
@@ -205,6 +207,7 @@ export default function Projects() {
     },
     {
       name: "Temporal Worker - Bulk CSV Processor",
+      shortName: "CSV Processor",
       category: "Backend • Distributed Systems • Data Processing",
       desc: "Highly scalable worker application for processing massive CSV files using Temporal workflows with intelligent chunking and parallel processing capabilities.",
       features: [
@@ -220,6 +223,7 @@ export default function Projects() {
     },
     {
       name: "Spring Cloud API Gateway",
+      shortName: "API Gateway",
       category: "Backend • Microservices • Security",
       desc: "Production-ready API Gateway serving as single entry point for microservices, providing routing, JWT security, rate limiting, and observability features.",
       features: [
@@ -235,6 +239,7 @@ export default function Projects() {
     },
     {
       name: "OpenAPI Client Test Framework",
+      shortName: "OpenAPI Client Testing",
       category: "Testing • Automation • DevOps",
       desc: "Dynamic test framework that generates, compiles, and loads client code at runtime from any Swagger/OpenAPI specification for comprehensive API testing.",
       features: [
@@ -250,6 +255,7 @@ export default function Projects() {
     },
     {
       name: "S3 Bulk File Processor",
+      shortName: "File Processor",
       category: "Backend • Data Processing • AWS",
       desc: "Micronaut-based application for processing large files in Amazon S3 with parallel chunk processing and multipart upload capabilities.",
       features: [
@@ -265,6 +271,7 @@ export default function Projects() {
     },
     {
       name: "OpenAPI Specification Test Framework",
+      shortName: "Spec Validator",
       category: "Testing • Quality Assurance • API Validation",
       desc: "Comprehensive validation framework ensuring OpenAPI specifications are complete, consistent, and production-ready with automated testing.",
       features: [
@@ -322,7 +329,7 @@ export default function Projects() {
                 setPaused(true);
               }}
             >
-              {p.name.split(" ")[0]}
+              {p.shortName}
             </ProjectBtn>
           ))}
         </TopNav>
