@@ -268,8 +268,8 @@ export default function Contact() {
               <FaLinkedin /> LinkedIn Profile
             </ContactItem>
 
-            <ContactItem href="https://twitter.com" target="_blank">
-              <FaTwitter /> Twitter
+            <ContactItem href="https://x.com" target="_blank">
+              <FaTwitter /> X
             </ContactItem>
 
           </ContactList>
