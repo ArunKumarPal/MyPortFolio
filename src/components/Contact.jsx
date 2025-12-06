@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FaEnvelope, FaLinkedin, FaGithub, FaXTwitter, FaPhone } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
 
 // SECTION CONTAINER
@@ -258,6 +258,10 @@ export default function Contact() {
 
             <ContactItem href="mailto:arunpal692@gmail.com">
               <FaEnvelope /> arunpal692@gmail.com
+            </ContactItem>
+
+            <ContactItem href="tel:+917409632835">
+              <FaPhone /> +91 7409632835
             </ContactItem>
 
             <ContactItem href="https://github.com/ArunKumarPal" target="_blank">
