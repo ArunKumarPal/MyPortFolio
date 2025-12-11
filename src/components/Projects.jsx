@@ -175,6 +175,38 @@ const NavBtn = styled.button`
 export default function Projects() {
   const projects = [
     {
+      name: "AI-Powered Documentation Assistant",
+      shortName: "AI Chatbot",
+      category: "AI/ML • AWS Bedrock • Production",
+      desc: "Production-grade AI chatbot using AWS Bedrock with RAG pipeline for intelligent documentation search and question answering.",
+      features: [
+        "Built RAG (Retrieval-Augmented Generation) pipeline with FAISS vector database for semantic search and context-aware responses",
+        "Optimized performance through async/await patterns, semaphore-based concurrency control, and WebSocket streaming for real-time responses",
+        "Reduced AI infrastructure costs significantly through intelligent Redis caching, input validation, and tiered model strategy",
+        "Implemented multi-stage validation system with LLM-based confidence scoring to prevent hallucinations and ensure accuracy",
+        "Designed fault-tolerant architecture with exponential backoff, circuit breaker pattern, and graceful degradation for high availability"
+      ],
+      repo: "#",
+      demo: "#",
+      tech: ["Python", "AWS Bedrock", "FastAPI", "FAISS", "Redis", "WebSocket", "Claude", "RAG"]
+    },
+    {
+      name: "GeoPlaces API - Location-Based Services",
+      shortName: "GeoPlaces API",
+      category: "Backend • Elasticsearch • Enterprise",
+      desc: "Enterprise-grade RESTful API for geographic places and POI search leveraging Elasticsearch with geospatial capabilities for large-scale location data.",
+      features: [
+        "Architected Elasticsearch query infrastructure with advanced Query DSL including BoolQuery, DisMaxQuery, GeoDistanceQuery, and MoreLikeThis",
+        "Built geospatial search capabilities with geo-point data types, geo-distance queries, haversine calculations, and polygon-based area search",
+        "Optimized query performance through custom scoring algorithms, field source filtering, and efficient pagination strategies",
+        "Designed ETL pipeline using Logstash for ingesting POI data from CSV files, processing large-scale location records from multiple vendors",
+        "Implemented hierarchical category matching with SIC codes and autocomplete service for real-time place name suggestions"
+      ],
+      repo: "#",
+      demo: "#",
+      tech: ["Java", "Elasticsearch", "Spring Boot", "Logstash", "AWS", "Maven", "REST API"]
+    },
+    {
       name: "Personal Portfolio Website",
       shortName: "Portfolio",
       category: "Frontend • React • Live Demo",
@@ -364,9 +396,11 @@ export default function Projects() {
               </BadgeContainer>
 
               <Buttons>
-                <Btn href={current.repo} target="_blank" rel="noopener noreferrer">
-                  <FaGithub /> View Code
-                </Btn>
+                {current.repo !== "#" && (
+                  <Btn href={current.repo} target="_blank" rel="noopener noreferrer">
+                    <FaGithub /> View Code
+                  </Btn>
+                )}
                 {current.demo !== "#" && (
                   <Btn href={current.demo} target="_blank" rel="noopener noreferrer">
                     <FaExternalLinkAlt /> Live Demo

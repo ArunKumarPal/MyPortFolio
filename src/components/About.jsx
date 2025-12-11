@@ -270,6 +270,14 @@ const aboutPages = [
         <SubHeading>💼 Professional Highlights</SubHeading>
         <BulletList>
           <BulletItem>
+            Built production <strong>AI-Powered Documentation Assistant</strong> using AWS Bedrock with RAG pipeline (FAISS), 
+            achieving high accuracy through multi-stage validation and intelligent caching strategies
+          </BulletItem>
+          <BulletItem>
+            Architected <strong>GeoPlaces API</strong> with Elasticsearch for geospatial search, implementing advanced 
+            Query DSL, ETL pipelines, and processing large-scale location data with optimized performance
+          </BulletItem>
+          <BulletItem>
             Led development of <strong>API Gateway</strong> with centralized access control, token validation, 
             IP-based rate limiting, and YAML-based routing for enterprise clients
           </BulletItem>
@@ -308,7 +316,10 @@ const aboutPages = [
             <strong>Languages:</strong> Java (Expert), Python, SQL, Go
           </BulletItem>
           <BulletItem>
-            <strong>Frameworks:</strong> Spring Boot, Micronaut, Spring Cloud, Hibernate/JPA, Reactive Programming
+            <strong>Frameworks:</strong> Spring Boot, Micronaut, Spring Cloud, Hibernate/JPA, FastAPI, Reactive Programming
+          </BulletItem>
+          <BulletItem>
+            <strong>AI/ML & Search:</strong> AWS Bedrock, RAG (Retrieval-Augmented Generation), FAISS, Elasticsearch, Vector Databases
           </BulletItem>
           <BulletItem>
             <strong>Databases:</strong> PostgreSQL, MySQL, Oracle, MongoDB, Redis (caching & pub-sub)
@@ -317,7 +328,7 @@ const aboutPages = [
             <strong>Cloud & DevOps:</strong> AWS, Azure, GCP, Docker, Kubernetes, Terraform, Jenkins, CI/CD, Datadog
           </BulletItem>
           <BulletItem>
-            <strong>Messaging & Tools:</strong> Kafka, Azure Event Hub, Temporal Workflows, JUnit5, Mockito, Gatling, SonarQube
+            <strong>Messaging & Tools:</strong> Kafka, Azure Event Hub, Temporal Workflows, WebSocket, Logstash, JUnit5, Mockito, Gatling, SonarQube
           </BulletItem>
         </BulletList>
 

@@ -86,14 +86,14 @@ const BulletList = styled.ul`
 `;
 
 const ProjectBlock = styled.div`
-  margin-top: 1.2rem;
-  padding: 0.9rem;
-  border-radius: 10px;
+  margin-top: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 5px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.06);
 
-  h5 { color:#1457c6; margin:0 0 0.6rem 0; }
-  ul { padding-left:1.1rem; li { margin-bottom:0.5rem; } }
+  h5 { color:#1457c6; margin:0 0 0.2rem 0; }
+  ul { padding-left:1.1rem; li { margin-bottom:0.3rem; } }
 `;
 
 const Controls = styled.div`
@@ -130,6 +130,14 @@ const EXPERIENCE = [
     ],
     projects: [
       {
+        title: "AI-Powered Documentation Assistant",
+        bullets: [
+          "Built production AI chatbot using AWS Bedrock with RAG pipeline (FAISS) for intelligent documentation search.",
+          "Optimized performance through async processing, Redis caching, and WebSocket streaming for real-time responses.",
+          "Implemented multi-stage validation with confidence scoring to prevent hallucinations and ensure accuracy."
+        ]
+      },
+      {
         title: "API Gateway",
         bullets: [
           "Built gateway with token validation, IP rate limiting, YAML routes, and centralized access control."
@@ -146,6 +154,22 @@ const EXPERIENCE = [
         bullets: [
           "Built geocode, autocomplete, phone/email verification APIs using Micronaut, Spring Boot & Go."
         ]
+      },
+      {
+        title: "DIS Data Quality",
+        bullets: [
+          "Developed grouping operators to classify similar data columns for improved data quality using Spark Streaming.",
+          "Implemented address geocoding operator with location points for data standardization and quality enhancement.",
+          "Built Spring Boot APIs with RxJava streams for UI visualization of pipeline steps integrated with Databricks."
+        ]
+      },
+      {
+        title: "GeoPlaces API - Location-Based Services",
+        bullets: [
+          "Architected Elasticsearch-based RESTful API for geographic places and POI search with geospatial capabilities.",
+          "Built advanced Query DSL with BoolQuery, GeoDistanceQuery, and MoreLikeThis for complex search scenarios.",
+          "Designed ETL pipeline using Logstash for ingesting large-scale location data with hierarchical category matching."
+        ]
       }
     ]
   },
@@ -155,21 +179,40 @@ const EXPERIENCE = [
     location: "Noida, IN",
     period: "Feb 2020 – Aug 2021",
     bullets: [
-      "Designed backend modules using Java + Oracle DB.",
-      "Created Technical Specification Documents and code review reports.",
-      "Handled UAT and production release documentation."
+      "Designed backend modules using Java, Struts, Spring, Hibernate, and Oracle DB.",
+      "Migrated legacy applications from OC4J to JBOSS EAP 7.1 with Java 8 upgrades.",
+      "Built schedulers, web services, and UI enhancements for government client (DPW, Dubai).",
+      "Created Technical Specification Documents and handled UAT/production releases."
     ],
     projects: [
       {
-        title: "Smart Payment (DPW)",
+        title: "Smart Payment System",
         bullets: [
-          "Integrated advance deposit & prepaid card modules into financial workflows."
+          "Integrated advance deposit & prepaid card payment modes into financial workflows using Spring, Hibernate, and ExtJs."
         ]
       },
       {
         title: "OC4J → JBOSS Migration",
         bullets: [
-          "Migrated legacy Java 5 apps to JBOSS with Java 8 upgrade and DB integration."
+          "Migrated legacy Java applications from OC4J to JBOSS EAP 7.1 with SOAP web services and database integration."
+        ]
+      },
+      {
+        title: "PMS (Customs XML Integration)",
+        bullets: [
+          "Modified XML format and queries to send port management data to customs system using SOAP web services."
+        ]
+      },
+      {
+        title: "Major Damage Scheduler",
+        bullets: [
+          "Built Java scheduler with cron expressions to execute DB procedures and added UI fields for discount visibility."
+        ]
+      },
+      {
+        title: "RMAA Enhancement",
+        bullets: [
+          "Fixed bugs and implemented enhancements in existing application and web service methods using Spring Boot."
         ]
       }
     ]
@@ -180,14 +223,28 @@ const EXPERIENCE = [
     location: "Noida, IN",
     period: "Jul 2018 – Jan 2020",
     bullets: [
-      "Built Java + Oracle modules and deployment automation.",
-      "Developed Landing Certificate features with UI, DB, and backend integration."
+      "Built Java backend modules with Spring, Hibernate, MyBatis, and Oracle database.",
+      "Developed UI features using ExtJs, jQuery, Ajax, and JavaScript for port management systems.",
+      "Created schedulers, web services, and database integration for DPW Dubai client.",
+      "Handled deployment, unit testing, and bug closure for production applications."
     ],
     projects: [
       {
-        title: "Landing Certificate",
+        title: "Landing Certificate (LGP)",
         bullets: [
-          "Added port selection UI, DB schema updates, and backend integration."
+          "Built gate pass system for goods entry/exit with document grouping feature for multiple companies in single vehicle."
+        ]
+      },
+      {
+        title: "EOIL Billing Module",
+        bullets: [
+          "Created billing module for operation charges on tankers at berth using Java 8, Spring, and JBOSS EAP 7.0."
+        ]
+      },
+      {
+        title: "Agent Master Integration",
+        bullets: [
+          "Built web service to sync data from customs system and created schedulers for database-to-database data transfer using Spring Boot."
         ]
       }
     ]

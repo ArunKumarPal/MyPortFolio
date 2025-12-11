@@ -198,12 +198,34 @@ export default function Skills() {
             </SkillsList>
           </CategoryCard>
 
-          {/* MESSAGING & TOOLS */}
+          {/* AI/ML & SEARCH */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <CategoryHeader>
+              <CategoryIcon>🤖</CategoryIcon>
+              <h3>AI/ML & Search</h3>
+            </CategoryHeader>
+
+            <SkillsList>
+              <SkillChip><SkillIcon>🧠</SkillIcon>AWS Bedrock</SkillChip>
+              <SkillChip><SkillIcon>📚</SkillIcon>RAG</SkillChip>
+              <SkillChip><SkillIcon>🔍</SkillIcon>FAISS</SkillChip>
+              <SkillChip><SkillIcon>🔎</SkillIcon>Elasticsearch</SkillChip>
+              <SkillChip><SkillIcon>⚡</SkillIcon>FastAPI</SkillChip>
+              <SkillChip><SkillIcon>🌐</SkillIcon>WebSocket</SkillChip>
+            </SkillsList>
+          </CategoryCard>
+
+          {/* MESSAGING & TOOLS */}
+          <CategoryCard
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <CategoryHeader>
               <CategoryIcon>🔧</CategoryIcon>
@@ -213,6 +235,7 @@ export default function Skills() {
             <SkillsList>
               <SkillChip><SkillIcon>📡</SkillIcon>Kafka</SkillChip>
               <SkillChip><SkillIcon>🔷</SkillIcon>Event Hub</SkillChip>
+              <SkillChip><SkillIcon>⏱️</SkillIcon>Temporal</SkillChip>
               <SkillChip><SkillIcon>🧪</SkillIcon>JUnit</SkillChip>
               <SkillChip><SkillIcon>🧰</SkillIcon>Mockito</SkillChip>
               <SkillChip><SkillIcon>📘</SkillIcon>Swagger</SkillChip>
