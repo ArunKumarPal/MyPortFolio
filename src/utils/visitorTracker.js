@@ -27,6 +27,13 @@ export const getVisitorInfo = async () => {
       // Screen Info
       screenResolution: `${window.screen.width}x${window.screen.height}`,
       
+      // Portal/Website Info
+      portfolioUrl: window.location.href,
+      pagePath: window.location.pathname,
+      pageTitle: document.title,
+      domain: window.location.hostname,
+      protocol: window.location.protocol,
+      
       // Time Info
       visitTime: new Date().toLocaleString(),
       timestamp: Date.now(),
@@ -54,6 +61,11 @@ export const getVisitorInfo = async () => {
       os: getOSInfo(),
       device: getDeviceType(),
       screenResolution: `${window.screen.width}x${window.screen.height}`,
+      portfolioUrl: window.location.href,
+      pagePath: window.location.pathname,
+      pageTitle: document.title,
+      domain: window.location.hostname,
+      protocol: window.location.protocol,
       visitTime: new Date().toLocaleString(),
       timestamp: Date.now(),
       referrer: document.referrer || "Direct",
@@ -131,6 +143,15 @@ export const sendVisitorNotification = async (visitorInfo) => {
     const emailParams = {
       to_name: "Arun",
       message: `New visitor on your portfolio!\n\n` +
+               `📊 Visit Statistics:\n` +
+               `━━━━━━━━━━━━━━━━━━━━\n` +
+               `Session Visits: ${visitorInfo.visitCount || 1}\n\n` +
+               `🌐 Portfolio Information:\n` +
+               `━━━━━━━━━━━━━━━━━━━━\n` +
+               `URL: ${visitorInfo.portfolioUrl}\n` +
+               `Page: ${visitorInfo.pagePath}\n` +
+               `Title: ${visitorInfo.pageTitle}\n` +
+               `Domain: ${visitorInfo.domain}\n\n` +
                `📍 Location Information:\n` +
                `━━━━━━━━━━━━━━━━━━━━\n` +
                `IP Address: ${visitorInfo.ip}\n` +
@@ -177,7 +198,12 @@ export const trackVisitor = async () => {
     return;
   }
 
-  // Check localStorage FIRST to prevent duplicate tracking
+  // Increment visit count for this session (tracks page refreshes/navigations)
+  const visitCount = parseInt(sessionStorage.getItem("portfolio_visit_count") || "0") + 1;
+  sessionStorage.setItem("portfolio_visit_count", visitCount.toString());
+  console.log(`Session visits: ${visitCount}`);
+
+  // Check localStorage FIRST to prevent duplicate email tracking
   const lastTracked = localStorage.getItem("portfolio_last_tracked");
   const now = Date.now();
   
@@ -195,6 +221,10 @@ export const trackVisitor = async () => {
 
     // Get visitor info
     const visitorInfo = await getVisitorInfo();
+    
+    // Add visit count to visitor info
+    visitorInfo.visitCount = visitCount;
+    
     console.log("Visitor Info:", visitorInfo);
 
     // Send notification
@@ -202,4 +232,19 @@ export const trackVisitor = async () => {
   } catch (error) {
     console.error("Error tracking visitor:", error);
   }
+};
+
+/**
+ * Get total visit count for current session
+ */
+export const getVisitCount = () => {
+  return parseInt(sessionStorage.getItem("portfolio_visit_count") || "0");
+};
+
+/**
+ * Reset visit count (for testing)
+ */
+export const resetVisitCount = () => {
+  sessionStorage.removeItem("portfolio_visit_count");
+  console.log("Session visit count reset");
 };
