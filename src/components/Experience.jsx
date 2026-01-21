@@ -119,22 +119,23 @@ const EXPERIENCE = [
     location: "Noida, IN",
     period: "Oct 2021 – Present",
     bullets: [
-      "Developed scalable APIs with performance optimization, OAuth2/JWT security, and robust error handling.",
-      "Improved API response times by ~30% using multithreading, Redis caching, and optimized DB queries.",
-      "Designed cloud deployments on AWS/GCP/Azure with API Gateway auth, rate limits, logging, DDoS protection.",
-      "Mentored developers on Java best practices, patterns, and microservices architecture.",
-      "Reduced production issues by ~40% using strict code reviews and SOLID principles.",
-      "Integrated JUnit5, TestNG, Gatling into CI/CD for automated test/benchmark pipelines.",
-      "Enabled full observability using Datadog, cutting incident response time.",
-      "Optimized Kubernetes resources, reducing cloud cost by ~25%."
+      "Designed scalable REST APIs with OAuth2/JWT security, error handling, and seamless microservices integration serving millions of requests.",
+      "Optimized API performance by ~30% using multithreading, Redis caching, and database query tuning for high-throughput systems.",
+      "Deployed services on AWS/GCP/Azure with Docker & Kubernetes; configured API Gateway for authentication, rate limiting, and DDoS protection.",
+      "Leveraged GitHub Copilot, AWS Bedrock, and ChatGPT/GPT-4 for code generation, refactoring, and test automation, improving development velocity by 40%.",
+      "Led code reviews enforcing SOLID principles and clean code practices, reducing production issues by ~40% with comprehensive testing strategies.",
+      "Implemented observability using Datadog with distributed tracing; enforced CI/CD pipelines with Jenkins and automated security scans (Black Duck, Checkmarx).",
+      "Mentored junior engineers on microservices architecture, design patterns, and modern Java development best practices.",
+      "Optimized Kubernetes resources and auto-scaling policies, achieving ~25% cloud cost reduction while maintaining high availability."
     ],
     projects: [
       {
         title: "AI-Powered Documentation Assistant",
         bullets: [
-          "Built production AI chatbot using AWS Bedrock with RAG pipeline (FAISS) for intelligent documentation search.",
-          "Optimized performance through async processing, Redis caching, and WebSocket streaming for real-time responses.",
-          "Implemented multi-stage validation with confidence scoring to prevent hallucinations and ensure accuracy."
+          "Built production AI chatbot using AWS Bedrock with RAG (Retrieval-Augmented Generation) pipeline and FAISS vector database for semantic search.",
+          "Achieved 100+ concurrent users with 99.5% uptime and 95% answer accuracy through async processing, Redis caching, and WebSocket streaming.",
+          "Implemented multi-stage validation with LLM-based confidence scoring, exponential backoff, and circuit breaker patterns for reliability.",
+          "Reduced AI infrastructure costs through intelligent caching strategies, input validation, and tiered model selection based on query complexity."
         ]
       },
       {
@@ -166,9 +167,11 @@ const EXPERIENCE = [
       {
         title: "GeoPlaces API - Location-Based Services",
         bullets: [
-          "Architected Elasticsearch-based RESTful API for geographic places and POI search with geospatial capabilities.",
-          "Built advanced Query DSL with BoolQuery, GeoDistanceQuery, and MoreLikeThis for complex search scenarios.",
-          "Designed ETL pipeline using Logstash for ingesting large-scale location data with hierarchical category matching."
+          "Architected enterprise-grade Elasticsearch-based RESTful API for geographic places and POI search with advanced geospatial capabilities.",
+          "Built complex Query DSL with BoolQuery, DisMaxQuery, GeoDistanceQuery, MoreLikeThis, and custom scoring algorithms for relevance tuning.",
+          "Implemented geo-point indexing, haversine distance calculations, polygon-based area search, and hierarchical category matching with SIC codes.",
+          "Designed ETL pipeline using Logstash for ingesting large-scale POI data from multiple vendors with automated data transformation and validation.",
+          "Achieved sub-500ms query response times through field source filtering, efficient pagination, and Elasticsearch index optimization strategies."
         ]
       }
     ]

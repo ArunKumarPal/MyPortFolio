@@ -124,10 +124,11 @@ export default function Skills() {
             </CategoryHeader>
 
             <SkillsList>
-              <SkillChip><SkillIcon>☕</SkillIcon>Java</SkillChip>
+              <SkillChip><SkillIcon>☕</SkillIcon>Java 8-21</SkillChip>
               <SkillChip><SkillIcon>🐍</SkillIcon>Python</SkillChip>
               <SkillChip><SkillIcon>🟦</SkillIcon>SQL</SkillChip>
               <SkillChip><SkillIcon>🐹</SkillIcon>Go</SkillChip>
+              <SkillChip><SkillIcon>💛</SkillIcon>JavaScript</SkillChip>
             </SkillsList>
           </CategoryCard>
 
@@ -207,13 +208,15 @@ export default function Skills() {
           >
             <CategoryHeader>
               <CategoryIcon>🤖</CategoryIcon>
-              <h3>AI/ML & Search</h3>
+              <h3>AI/ML & Development Tools</h3>
             </CategoryHeader>
 
             <SkillsList>
               <SkillChip><SkillIcon>🧠</SkillIcon>AWS Bedrock</SkillChip>
-              <SkillChip><SkillIcon>📚</SkillIcon>RAG</SkillChip>
-              <SkillChip><SkillIcon>🔍</SkillIcon>FAISS</SkillChip>
+              <SkillChip><SkillIcon>💬</SkillIcon>ChatGPT/GPT-4</SkillChip>
+              <SkillChip><SkillIcon>🤖</SkillIcon>GitHub Copilot</SkillChip>
+              <SkillChip><SkillIcon>📚</SkillIcon>RAG Pipeline</SkillChip>
+              <SkillChip><SkillIcon>🔍</SkillIcon>FAISS Vectors</SkillChip>
               <SkillChip><SkillIcon>🔎</SkillIcon>Elasticsearch</SkillChip>
               <SkillChip><SkillIcon>⚡</SkillIcon>FastAPI</SkillChip>
               <SkillChip><SkillIcon>🌐</SkillIcon>WebSocket</SkillChip>
@@ -236,12 +239,15 @@ export default function Skills() {
               <SkillChip><SkillIcon>📡</SkillIcon>Kafka</SkillChip>
               <SkillChip><SkillIcon>🔷</SkillIcon>Event Hub</SkillChip>
               <SkillChip><SkillIcon>⏱️</SkillIcon>Temporal</SkillChip>
-              <SkillChip><SkillIcon>🧪</SkillIcon>JUnit</SkillChip>
+              <SkillChip><SkillIcon>⚡</SkillIcon>Apache Spark</SkillChip>
+              <SkillChip><SkillIcon>🔄</SkillIcon>Apache Airflow</SkillChip>
+              <SkillChip><SkillIcon>🧪</SkillIcon>JUnit 5</SkillChip>
               <SkillChip><SkillIcon>🧰</SkillIcon>Mockito</SkillChip>
+              <SkillChip><SkillIcon>📊</SkillIcon>Gatling</SkillChip>
               <SkillChip><SkillIcon>📘</SkillIcon>Swagger</SkillChip>
               <SkillChip><SkillIcon>📦</SkillIcon>Terraform</SkillChip>
               <SkillChip><SkillIcon>🐧</SkillIcon>Linux</SkillChip>
-              <SkillChip><SkillIcon>💡</SkillIcon>IntelliJ</SkillChip>
+              <SkillChip><SkillIcon>💡</SkillIcon>IntelliJ IDEA</SkillChip>
             </SkillsList>
           </CategoryCard>
 

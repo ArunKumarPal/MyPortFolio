@@ -202,10 +202,17 @@ const aboutPages = [
     content: (
       <>
         <Paragraph>
-          I'm a <strong>Senior Software Engineer I</strong> with <strong>7+ years of professional experience</strong> in 
+          I'm a <strong>Senior Java Backend Engineer</strong> with <strong>7+ years of professional experience</strong> in 
           designing and building enterprise-grade backend systems, microservices architectures, and distributed applications. 
           Currently at <strong>Precisely Software & Data</strong>, I architect scalable APIs that power mission-critical 
           data solutions, processing millions of requests daily while maintaining optimal performance and reliability.
+        </Paragraph>
+        
+        <Paragraph>
+          Skilled in leveraging <strong>AI-assisted development tools</strong> including <strong>GitHub Copilot</strong>, 
+          <strong>AWS Bedrock</strong>, and <strong>ChatGPT/GPT-4</strong> to accelerate development velocity, enhance code quality, 
+          improve delivery timelines, and build intelligent AI-powered solutions. Expertise in implementing RAG (Retrieval-Augmented Generation) 
+          pipelines, vector databases, and production-ready AI chatbots.
         </Paragraph>
 
         <HighlightBox>
@@ -239,24 +246,28 @@ const aboutPages = [
         <SubHeading>🎯 Technical Specializations</SubHeading>
         <BulletList>
           <BulletItem>
+            <strong>AI-Powered Development:</strong> Leveraging GitHub Copilot, AWS Bedrock, ChatGPT/GPT-4 for accelerated 
+            development, code generation, refactoring, test automation, and building production-ready AI chatbots with RAG pipelines
+          </BulletItem>
+          <BulletItem>
             <strong>Backend Architecture:</strong> Designed and implemented microservices using Spring Boot, Micronaut, 
-            Spring Cloud with fault-tolerant patterns, circuit breakers, and distributed tracing
+            Spring Cloud with fault-tolerant patterns, circuit breakers, distributed tracing, and SOLID principles
           </BulletItem>
           <BulletItem>
             <strong>API Development:</strong> Built RESTful APIs with OAuth2/JWT authentication, rate limiting, 
             comprehensive error handling, and OpenAPI documentation serving millions of requests
           </BulletItem>
           <BulletItem>
-            <strong>Cloud Native Solutions:</strong> Deployed and optimized systems across AWS, GCP, and Azure with 
-            containerization (Docker/Kubernetes), infrastructure as code (Terraform), and CI/CD automation
+            <strong>Cloud Native Solutions:</strong> Deployed and optimized systems across AWS (EC2, Lambda, S3, Bedrock), 
+            GCP, and Azure with containerization (Docker/Kubernetes), infrastructure as code, and CI/CD automation
           </BulletItem>
           <BulletItem>
             <strong>Distributed Systems:</strong> Architected event-driven workflows using Temporal, Kafka, Redis, 
-            and async processing patterns for high-throughput data pipelines
+            Apache Spark, Airflow, and async processing patterns for high-throughput data pipelines
           </BulletItem>
           <BulletItem>
             <strong>Performance Engineering:</strong> Optimized API response times by 30% through intelligent caching, 
-            multithreading, database query optimization, and resource management
+            multithreading, database query optimization, JVM tuning, and resource management
           </BulletItem>
         </BulletList>
       </>
@@ -270,12 +281,16 @@ const aboutPages = [
         <SubHeading>💼 Professional Highlights</SubHeading>
         <BulletList>
           <BulletItem>
-            Built production <strong>AI-Powered Documentation Assistant</strong> using AWS Bedrock with RAG pipeline (FAISS), 
-            achieving high accuracy through multi-stage validation and intelligent caching strategies
+            Built production <strong>AI-Powered Documentation Assistant</strong> using AWS Bedrock with RAG pipeline (FAISS, 
+            vector embeddings), achieving 95% answer accuracy through multi-stage validation, WebSocket streaming, and intelligent caching strategies
+          </BulletItem>
+          <BulletItem>
+            Leveraged <strong>GitHub Copilot</strong> for code generation, refactoring, and test automation, improving development 
+            velocity by 40% while maintaining code quality and consistency across teams
           </BulletItem>
           <BulletItem>
             Architected <strong>GeoPlaces API</strong> with Elasticsearch for geospatial search, implementing advanced 
-            Query DSL, ETL pipelines, and processing large-scale location data with optimized performance
+            Query DSL, geo-distance queries, ETL pipelines with Logstash, and processing large-scale location data with sub-500ms response times
           </BulletItem>
           <BulletItem>
             Led development of <strong>API Gateway</strong> with centralized access control, token validation, 
@@ -313,34 +328,42 @@ const aboutPages = [
         <SubHeading>🔧 Technical Proficiency</SubHeading>
         <BulletList>
           <BulletItem>
-            <strong>Languages:</strong> Java (Expert), Python, SQL, Go
+            <strong>Languages:</strong> Java 8-21 (Expert), Python, SQL, Go, JavaScript
           </BulletItem>
           <BulletItem>
             <strong>Frameworks:</strong> Spring Boot, Micronaut, Spring Cloud, Hibernate/JPA, FastAPI, Reactive Programming
           </BulletItem>
           <BulletItem>
-            <strong>AI/ML & Search:</strong> AWS Bedrock, RAG (Retrieval-Augmented Generation), FAISS, Elasticsearch, Vector Databases
+            <strong>AI/ML Tools & Platforms:</strong> AWS Bedrock (Claude, Titan), GitHub Copilot, ChatGPT/GPT-4, RAG (Retrieval-Augmented Generation), 
+            FAISS Vector Databases, LangChain, Elasticsearch for AI Search
           </BulletItem>
           <BulletItem>
-            <strong>Databases:</strong> PostgreSQL, MySQL, Oracle, MongoDB, Redis (caching & pub-sub)
+            <strong>Databases:</strong> PostgreSQL, MySQL, Oracle DB, MongoDB, Redis (caching & pub-sub), Elasticsearch
           </BulletItem>
           <BulletItem>
-            <strong>Cloud & DevOps:</strong> AWS, Azure, GCP, Docker, Kubernetes, Terraform, Jenkins, CI/CD, Datadog
+            <strong>Cloud & DevOps:</strong> AWS (EC2, Lambda, S3, Bedrock AI), Azure, GCP, Docker, Kubernetes, Terraform, Jenkins, CI/CD, 
+            Datadog, SonarQube, Blackduck, Checkmarx
           </BulletItem>
           <BulletItem>
-            <strong>Messaging & Tools:</strong> Kafka, Azure Event Hub, Temporal Workflows, WebSocket, Logstash, JUnit5, Mockito, Gatling, SonarQube
+            <strong>Big Data & Distributed:</strong> Apache Spark, Apache Airflow, Temporal Workflow, Hadoop, Databricks, Kafka, Azure Event Hub
+          </BulletItem>
+          <BulletItem>
+            <strong>Testing & Tools:</strong> JUnit 5, TestNG, Mockito, Gatling, WebSocket, Logstash, Swagger/OpenAPI, Git, SVN
           </BulletItem>
         </BulletList>
 
         <SubHeading style={{ marginTop: "2rem" }}>🏆 Recognition & Certifications</SubHeading>
         <BulletList>
           <BulletItem>
-            <strong>4x Award Winner</strong> at Precisely Software & Data: 2× Spot Awards, 2× Stellar Performer Awards, 
-            1× Team Award for exceptional technical contributions and leadership
+            <strong>5x Award Winner</strong> at Precisely Software & Data: 2× Spot Awards (Nov 2023, Jun 2022), 2× Stellar Performer Awards 
+            (Jan 2023, Jan 2022), 1× Team Award (Q1 2024) for exceptional technical contributions, leadership, and innovation
           </BulletItem>
           <BulletItem>
-            <strong>Certified Professional:</strong> AWS Cloud, Docker, Python, Spring Boot Microservices, 
-            Jenkins CI/CD, and Android Development
+            <strong>Certified Professional:</strong> AWS SimuLearn Cloud Practitioner (2025), AWS Cloud Computing (2023), Docker Containerization, 
+            Python Programming, Spring Boot Microservices, Jenkins CI/CD, Regular Expressions, and Android Development
+          </BulletItem>
+          <BulletItem>
+            <strong>HackerRank Verified:</strong> Java, Problem Solving, SQL, CSS - demonstrating strong algorithmic and programming proficiency
           </BulletItem>
         </BulletList>
       </>

@@ -241,10 +241,10 @@ export default function Hero() {
           <Title>Senior Java Backend Engineer</Title>
 
           <Description>
-            Senior Backend Engineer with 7+ years building scalable, secure, and
-            high-performance systems using Java, Spring Boot, Micronaut, and
-            Microservices. Skilled in Cloud, Big Data, and Kubernetes with a
-            strong focus on performance, reliability, and system design.
+            Senior Backend Engineer with 7+ years building scalable, high-performance enterprise systems 
+            using Java, Spring Boot, Microservices, and Cloud technologies. Expert in AI-powered development 
+            (GitHub Copilot, AWS Bedrock, ChatGPT/GPT-4), distributed systems, and performance optimization 
+            with a strong focus on clean architecture, reliability, and innovation.
           </Description>
 
           <ButtonRow>

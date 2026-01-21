@@ -12,6 +12,7 @@ import teamAwardQ1_2024 from "../pick/awards/team-Q1-2024.jpg";
 
 // Import certificate images
 import awsCert from "../pick/certificates/aws.png";
+import awsCloudCert from "../pick/certificates/AWS_CLOUD.png";
 import pythonCert from "../pick/certificates/python.png";
 import regexCert from "../pick/certificates/regex.jpg";
 import springBootCert from "../pick/certificates/springboot.png";
@@ -240,64 +241,73 @@ export default function Certifications() {
     certifications: [
       {
         id: 6,
-        title: "AWS Certified Cloud Practitioner",
-        issuer: "Udemy",
-        date: "2023",
-        description: "Comprehensive AWS Cloud fundamentals covering core services, architecture, security, and pricing models.",
-        image: awsCert,
+        title: "AWS SimuLearn: Cloud Practitioner",
+        issuer: "AWS Training & Certification",
+        date: "December 2025",
+        description: "Completed AWS SimuLearn Cloud Practitioner training with hands-on labs covering AWS core services, cloud architecture, security, and best practices.",
+        image: awsCloudCert,
         icon: <FaCertificate />
       },
       {
         id: 7,
-        title: "Python Programming Masterclass",
+        title: "AWS Certified Cloud Practitioner",
         issuer: "Udemy",
-        date: "2022",
-        description: "Complete Python course covering advanced programming concepts, data structures, and real-world applications.",
-        image: pythonCert,
+        date: "2023",
+        description: "Comprehensive AWS Cloud fundamentals covering core services, architecture, security, pricing models, and cloud migration strategies.",
+        image: awsCert,
         icon: <FaCertificate />
       },
       {
         id: 8,
-        title: "Regular Expressions (Regex) Mastery",
+        title: "Python Programming Masterclass",
         issuer: "Udemy",
         date: "2022",
-        description: "Advanced regex patterns and techniques for text processing, validation, and data extraction.",
-        image: regexCert,
+        description: "Complete Python course covering advanced programming concepts, data structures, OOP, and real-world applications.",
+        image: pythonCert,
         icon: <FaCertificate />
       },
       {
         id: 9,
-        title: "Spring Boot Microservices",
+        title: "Regular Expressions (Regex) Mastery",
         issuer: "Udemy",
-        date: "2023",
-        description: "Building scalable microservices with Spring Boot, Spring Cloud, REST APIs, and distributed systems architecture.",
-        image: springBootCert,
+        date: "2022",
+        description: "Advanced regex patterns and techniques for text processing, validation, data extraction, and string manipulation.",
+        image: regexCert,
         icon: <FaCertificate />
       },
       {
         id: 10,
-        title: "Jenkins CI/CD Pipeline",
+        title: "Spring Boot Microservices",
         issuer: "Udemy",
         date: "2023",
-        description: "Continuous integration and deployment automation with Jenkins, pipelines, and DevOps best practices.",
-        image: jenkinsCert,
+        description: "Building scalable microservices with Spring Boot, Spring Cloud, REST APIs, distributed systems architecture, and cloud deployment.",
+        image: springBootCert,
         icon: <FaCertificate />
       },
       {
         id: 11,
-        title: "Docker Certified Associate",
-        issuer: "KodeKloud",
-        date: "2022",
-        description: "Container orchestration, Docker architecture, image management, and containerization best practices.",
-        image: dockerCert,
+        title: "Jenkins CI/CD Pipeline",
+        issuer: "Udemy",
+        date: "2023",
+        description: "Continuous integration and deployment automation with Jenkins, pipelines, build automation, and DevOps best practices.",
+        image: jenkinsCert,
         icon: <FaCertificate />
       },
       {
         id: 12,
+        title: "Docker Certified Associate",
+        issuer: "KodeKloud",
+        date: "2022",
+        description: "Container orchestration, Docker architecture, image management, networking, volumes, and containerization best practices.",
+        image: dockerCert,
+        icon: <FaCertificate />
+      },
+      {
+        id: 13,
         title: "Android App Development",
         issuer: "AndroJava - Class Time Training",
         date: "2021",
-        description: "Mobile app development with Android SDK, Java, UI/UX design, and application lifecycle management.",
+        description: "Mobile app development with Android SDK, Java, UI/UX design, activities, fragments, and application lifecycle management.",
         image: androidCert,
         icon: <FaCertificate />
       }
