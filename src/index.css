@@ -1,12 +1,108 @@
+:root {
+  /* Section backgrounds */
+  --bg-page: #f2f5fa;
+  --bg-s1: #ffffff;
+  --bg-s2: #f7f9fc;
+  --bg-s3: #f3f7fb;
+  --section-grad-a: linear-gradient(135deg, #f7f9fc 0%, #ffffff 100%);
+  --section-grad-b: linear-gradient(135deg, #ffffff 0%, #f3f7fb 100%);
+
+  /* Cards */
+  --bg-card: rgba(255, 255, 255, 0.4);
+  --bg-card-alt: rgba(255, 255, 255, 0.6);
+  --bg-input: rgba(255, 255, 255, 0.8);
+
+  /* Text */
+  --text-primary: #12233b;
+  --text-secondary: #334e6a;
+  --text-body: #1b2b3a;
+  --text-muted: #6b7a8d;
+  --text-subtle: #444;
+
+  /* Accent */
+  --accent: #1457c6;
+  --accent-2: #764ba2;
+  --accent-gradient: linear-gradient(90deg, #1457c6, #764ba2);
+
+  /* Borders */
+  --border-glass: rgba(255, 255, 255, 0.5);
+  --border-accent: rgba(20, 87, 198, 0.2);
+  --border-input: #e0e7f0;
+
+  /* Shadows */
+  --shadow-card: rgba(12, 38, 73, 0.08);
+  --shadow-card-hover: rgba(12, 38, 73, 0.15);
+
+  /* Header */
+  --header-bg: #ffffff;
+  --header-border: #e6e6e6;
+  --header-shadow: rgba(0, 0, 0, 0.03);
+
+  /* Misc */
+  --cert-image-bg: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  --highlight-bg: rgba(20, 87, 198, 0.08);
+  --highlight-border: #1457c6;
+  --stat-card-bg: rgba(255, 255, 255, 0.6);
+  --stat-card-border: rgba(20, 87, 198, 0.2);
+}
+
+:root[data-theme="dark"] {
+  /* Section backgrounds */
+  --bg-page: #0d1117;
+  --bg-s1: #0d1117;
+  --bg-s2: #161b22;
+  --bg-s3: #131920;
+  --section-grad-a: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  --section-grad-b: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+
+  /* Cards */
+  --bg-card: rgba(30, 41, 59, 0.6);
+  --bg-card-alt: rgba(30, 41, 59, 0.8);
+  --bg-input: rgba(255, 255, 255, 0.05);
+
+  /* Text */
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-body: #cbd5e1;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+
+  /* Accent */
+  --accent: #60a5fa;
+  --accent-2: #a78bfa;
+  --accent-gradient: linear-gradient(90deg, #60a5fa, #a78bfa);
+
+  /* Borders */
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(96, 165, 250, 0.2);
+  --border-input: #334155;
+
+  /* Shadows */
+  --shadow-card: rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: rgba(0, 0, 0, 0.5);
+
+  /* Header */
+  --header-bg: #161b22;
+  --header-border: #30363d;
+  --header-shadow: rgba(0, 0, 0, 0.2);
+
+  /* Misc */
+  --cert-image-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --highlight-bg: rgba(96, 165, 250, 0.08);
+  --highlight-border: #60a5fa;
+  --stat-card-bg: rgba(30, 41, 59, 0.5);
+  --stat-card-border: rgba(96, 165, 250, 0.2);
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  background: #f2f5fa;
-  color: #222;
+  background: var(--bg-page);
+  color: var(--text-primary);
 }
 
 a {
-  color: #0077CC;
+  color: var(--accent);
   text-decoration: none;
 }
 a:hover {
@@ -28,4 +124,16 @@ section {
   section {
     padding: 3rem 0.6rem;
   }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  z-index: 10000;
+  transition: width 0.08s linear;
+  pointer-events: none;
+  border-radius: 0 2px 2px 0;
 }

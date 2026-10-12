@@ -3,14 +3,12 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaAward, FaCertificate, FaTrophy, FaMedal } from "react-icons/fa";
 
-// Import award images
 import spotAwardNov2023 from "../pick/awards/spot-Nov-2023.jpg";
 import spotAwardJune2022 from "../pick/awards/spot-Jun-2022.jpg";
 import stellarJan2023 from "../pick/awards/steller-Jan-2023.jpg";
 import stellarJan2022 from "../pick/awards/steller-Jan-2022.jpg";
 import teamAwardQ1_2024 from "../pick/awards/team-Q1-2024.jpg";
 
-// Import certificate images
 import awsCert from "../pick/certificates/aws.png";
 import awsCloudCert from "../pick/certificates/AWS_CLOUD.png";
 import pythonCert from "../pick/certificates/python.png";
@@ -20,12 +18,10 @@ import jenkinsCert from "../pick/certificates/jenkins.jpg";
 import dockerCert from "../pick/certificates/docker.png";
 import androidCert from "../pick/certificates/andriod.jpg";
 
-// ================= Styled Components =================
-
 const Section = styled.section`
   padding: 5rem 2rem;
   min-height: 85vh;
-  background: linear-gradient(135deg, #ffffff 0%, #f3f7fb 100%);
+  background: var(--section-grad-b);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,17 +33,24 @@ const Container = styled.div`
 `;
 
 const Heading = styled.h2`
-  font-size: 2.4rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
   text-align: center;
   margin-bottom: 1rem;
   font-weight: 800;
-  color: #12233b;
+  color: var(--text-primary);
+
+  span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 `;
 
 const SubHeading = styled.p`
   text-align: center;
   font-size: 1.1rem;
-  color: #334e6a;
+  color: var(--text-secondary);
   margin-bottom: 2.5rem;
 `;
 
@@ -62,10 +65,9 @@ const TabNav = styled.div`
 const TabBtn = styled.button`
   padding: 0.7rem 1.5rem;
   border-radius: 999px;
-  border: none;
-  background: ${(p) =>
-    p.$active ? "linear-gradient(90deg,#1457c6,#764ba2)" : "rgba(255,255,255,0.5)"};
-  color: ${(p) => (p.$active ? "#fff" : "#16324a")};
+  border: 1px solid ${p => p.$active ? "transparent" : "var(--border-accent)"};
+  background: ${p => p.$active ? "var(--accent-gradient)" : "var(--bg-card)"};
+  color: ${p => p.$active ? "#fff" : "var(--text-primary)"};
   font-weight: 700;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -75,7 +77,7 @@ const TabBtn = styled.button`
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(20, 87, 198, 0.2);
+    box-shadow: 0 4px 12px var(--shadow-card);
   }
 
   svg {
@@ -91,19 +93,19 @@ const Grid = styled.div`
 `;
 
 const Card = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 1.5rem;
-  border-left: 5px solid #1457c6;
-  box-shadow: 0 10px 30px rgba(12, 38, 73, 0.1);
-  transition: all 0.3s ease;
+  border-left: 5px solid var(--accent);
+  box-shadow: 0 10px 30px var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
   cursor: pointer;
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(12, 38, 73, 0.15);
-    border-left-color: #764ba2;
+    box-shadow: 0 15px 40px var(--shadow-card-hover);
+    border-left-color: var(--accent-2);
   }
 `;
 
@@ -115,33 +117,33 @@ const CardHeader = styled.div`
 
   svg {
     font-size: 2rem;
-    color: #1457c6;
+    color: var(--accent);
   }
 `;
 
 const CardTitle = styled.h3`
   font-size: 1.2rem;
   font-weight: 700;
-  color: #102235;
+  color: var(--text-primary);
   margin: 0;
 `;
 
 const CardIssuer = styled.p`
   font-size: 0.95rem;
-  color: #1457c6;
+  color: var(--accent);
   font-weight: 600;
   margin: 0.5rem 0;
 `;
 
 const CardDate = styled.p`
   font-size: 0.9rem;
-  color: #334e6a;
+  color: var(--text-secondary);
   margin: 0.3rem 0;
 `;
 
 const CardDescription = styled.p`
   font-size: 0.95rem;
-  color: #444;
+  color: var(--text-body);
   line-height: 1.6;
   margin-top: 0.8rem;
 `;
@@ -150,7 +152,7 @@ const ImagePreview = styled.div`
   width: 100%;
   height: 180px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: var(--cert-image-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,25 +173,14 @@ const ImagePreview = styled.div`
 `;
 
 const PlaceholderText = styled.span`
-  color: #1457c6;
+  color: var(--accent);
   font-size: 0.9rem;
   font-weight: 600;
 `;
 
-const EmptyState = styled.div`
-  text-align: center;
-  padding: 3rem;
-  color: #334e6a;
-  font-size: 1.1rem;
-`;
-
-// ================= Component =================
-
 export default function Certifications() {
-  const [activeTab, setActiveTab] = useState("awards");
+  const [activeTab, setActiveTab] = useState("awards")
 
-  // You can add your certificate/award images in the src/pick folder
-  // and import them here, then add to the data below
   const certifications = {
     awards: [
       {
@@ -312,32 +303,22 @@ export default function Certifications() {
         icon: <FaCertificate />
       }
     ]
-  };
+  }
 
-  const currentItems = certifications[activeTab] || [];
+  const currentItems = certifications[activeTab] || []
 
   return (
     <Section id="certifications">
       <Container>
-        <Heading>Certifications & Achievements</Heading>
-        <SubHeading>
-          Awards, recognitions, and professional certifications
-        </SubHeading>
+        <Heading>Certifications & <span>Achievements</span></Heading>
+        <SubHeading>Awards, recognitions, and professional certifications</SubHeading>
 
         <TabNav>
-          <TabBtn
-            $active={activeTab === "awards"}
-            onClick={() => setActiveTab("awards")}
-          >
-            <FaTrophy />
-            Awards & Recognition
+          <TabBtn $active={activeTab === "awards"} onClick={() => setActiveTab("awards")}>
+            <FaTrophy /> Awards & Recognition
           </TabBtn>
-          <TabBtn
-            $active={activeTab === "certifications"}
-            onClick={() => setActiveTab("certifications")}
-          >
-            <FaCertificate />
-            Certifications & Courses
+          <TabBtn $active={activeTab === "certifications"} onClick={() => setActiveTab("certifications")}>
+            <FaCertificate /> Certifications & Courses
           </TabBtn>
         </TabNav>
 
@@ -350,38 +331,31 @@ export default function Certifications() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
           >
-            {currentItems.length > 0 ? (
-              currentItems.map((item, index) => (
-                <Card
-                  key={item.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <CardHeader>
-                    {item.icon}
-                    <CardTitle>{item.title}</CardTitle>
-                  </CardHeader>
-
-                  <CardIssuer>{item.issuer}</CardIssuer>
-                  <CardDate>{item.date}</CardDate>
-                  <CardDescription>{item.description}</CardDescription>
-
-                  <ImagePreview>
-                    {item.image ? (
-                      <img src={item.image} alt={item.title} />
-                    ) : (
-                      <PlaceholderText>Certificate Image</PlaceholderText>
-                    )}
-                  </ImagePreview>
-                </Card>
-              ))
-            ) : (
-              <EmptyState>No items to display</EmptyState>
-            )}
+            {currentItems.map((item, index) => (
+              <Card
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <CardHeader>
+                  {item.icon}
+                  <CardTitle>{item.title}</CardTitle>
+                </CardHeader>
+                <CardIssuer>{item.issuer}</CardIssuer>
+                <CardDate>{item.date}</CardDate>
+                <CardDescription>{item.description}</CardDescription>
+                <ImagePreview>
+                  {item.image
+                    ? <img src={item.image} alt={item.title} />
+                    : <PlaceholderText>Certificate Image</PlaceholderText>
+                  }
+                </ImagePreview>
+              </Card>
+            ))}
           </Grid>
         </AnimatePresence>
       </Container>
     </Section>
-  );
+  )
 }

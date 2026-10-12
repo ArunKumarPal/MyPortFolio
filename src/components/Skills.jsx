@@ -2,13 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-// =======================
-// GLASSMORPHISM STYLES
-// =======================
-
 const Section = styled.section`
   padding: 6rem 3rem;
-  background: linear-gradient(135deg, #eef2f7 0%, #ffffff 100%);
+  background: var(--section-grad-a);
   min-height: 100vh;
 
   @media (max-width: 900px) {
@@ -26,10 +22,13 @@ const Heading = styled.h2`
   font-weight: 800;
   text-align: center;
   margin-bottom: 3.5rem;
-  color: #1d1d1d;
+  color: var(--text-primary);
 
   span {
-    color: #1457c6;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 `;
 
@@ -39,17 +38,15 @@ const CategoriesGrid = styled.div`
   gap: 2.5rem;
 `;
 
-// Category Card
 const CategoryCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--bg-card);
   backdrop-filter: blur(14px);
   border-radius: 24px;
   padding: 2.2rem;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 45px var(--shadow-card);
+  border: 1px solid var(--border-glass);
 `;
 
-// Category Header
 const CategoryHeader = styled.div`
   display: flex;
   align-items: center;
@@ -59,7 +56,7 @@ const CategoryHeader = styled.div`
   h3 {
     font-size: 1.7rem;
     font-weight: 700;
-    color: #1457c6;
+    color: var(--accent);
   }
 `;
 
@@ -67,7 +64,6 @@ const CategoryIcon = styled.div`
   font-size: 2.4rem;
 `;
 
-// Skill Chips
 const SkillsList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -75,31 +71,29 @@ const SkillsList = styled.div`
 `;
 
 const SkillChip = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--bg-card-alt);
   padding: 0.6rem 1.2rem;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   border-radius: 50px;
   font-size: 1.05rem;
-  color: #1d1d1d;
+  color: var(--text-body);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 4px 16px var(--shadow-card);
+  cursor: default;
+  transition: transform 0.2s, box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 22px var(--shadow-card-hover);
   }
 `;
 
 const SkillIcon = styled.div`
   font-size: 1.2rem;
 `;
-
-// ==========================================
-// MAIN COMPONENT
-// ==========================================
 
 export default function Skills() {
   return (
@@ -111,7 +105,6 @@ export default function Skills() {
 
         <CategoriesGrid>
 
-          {/* LANGUAGES */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,17 +115,17 @@ export default function Skills() {
               <CategoryIcon>🧩</CategoryIcon>
               <h3>Languages</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>☕</SkillIcon>Java 8-21</SkillChip>
               <SkillChip><SkillIcon>🐍</SkillIcon>Python</SkillChip>
               <SkillChip><SkillIcon>🟦</SkillIcon>SQL</SkillChip>
               <SkillChip><SkillIcon>🐹</SkillIcon>Go</SkillChip>
               <SkillChip><SkillIcon>💛</SkillIcon>JavaScript</SkillChip>
+              <SkillChip><SkillIcon>🅰️</SkillIcon>Angular</SkillChip>
+              <SkillChip><SkillIcon>🧩</SkillIcon>ExtJS / jQuery</SkillChip>
             </SkillsList>
           </CategoryCard>
 
-          {/* BACKEND */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +136,6 @@ export default function Skills() {
               <CategoryIcon>⚙️</CategoryIcon>
               <h3>Backend Frameworks</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>🌱</SkillIcon>Spring Boot</SkillChip>
               <SkillChip><SkillIcon>🔥</SkillIcon>Micronaut</SkillChip>
@@ -151,10 +143,11 @@ export default function Skills() {
               <SkillChip><SkillIcon>🛢️</SkillIcon>Hibernate / JPA</SkillChip>
               <SkillChip><SkillIcon>⚡</SkillIcon>Reactive</SkillChip>
               <SkillChip><SkillIcon>🔗</SkillIcon>Microservices</SkillChip>
+              <SkillChip><SkillIcon>🔐</SkillIcon>OAuth2 / JWT</SkillChip>
+              <SkillChip><SkillIcon>🧵</SkillIcon>Multithreading</SkillChip>
             </SkillsList>
           </CategoryCard>
 
-          {/* CLOUD & DEVOPS */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -165,20 +158,20 @@ export default function Skills() {
               <CategoryIcon>☁️</CategoryIcon>
               <h3>Cloud & DevOps</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>🟧</SkillIcon>AWS</SkillChip>
-              <SkillChip><SkillIcon>🔵</SkillIcon>Azure</SkillChip>
-              <SkillChip><SkillIcon>🟦</SkillIcon>GCP</SkillChip>
-              <SkillChip><SkillIcon>🐳</SkillIcon>Docker</SkillChip>
+              <SkillChip><SkillIcon>�</SkillIcon>Docker</SkillChip>
               <SkillChip><SkillIcon>☸️</SkillIcon>Kubernetes</SkillChip>
-              <SkillChip><SkillIcon>🛠️</SkillIcon>CI/CD</SkillChip>
+              <SkillChip><SkillIcon>🛠️</SkillIcon>Jenkins</SkillChip>
+              <SkillChip><SkillIcon>🦊</SkillIcon>GitLab CI</SkillChip>
+              <SkillChip><SkillIcon>🐙</SkillIcon>GitHub Actions</SkillChip>
               <SkillChip><SkillIcon>🔍</SkillIcon>SonarQube</SkillChip>
               <SkillChip><SkillIcon>📡</SkillIcon>Datadog</SkillChip>
+              <SkillChip><SkillIcon>☁️</SkillIcon>CloudWatch</SkillChip>
+              <SkillChip><SkillIcon>⚡</SkillIcon>Power Automate</SkillChip>
             </SkillsList>
           </CategoryCard>
 
-          {/* DATABASES */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -189,7 +182,6 @@ export default function Skills() {
               <CategoryIcon>🛢️</CategoryIcon>
               <h3>Databases</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>🐘</SkillIcon>PostgreSQL</SkillChip>
               <SkillChip><SkillIcon>🐬</SkillIcon>MySQL</SkillChip>
@@ -199,7 +191,6 @@ export default function Skills() {
             </SkillsList>
           </CategoryCard>
 
-          {/* AI/ML & SEARCH */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -208,22 +199,23 @@ export default function Skills() {
           >
             <CategoryHeader>
               <CategoryIcon>🤖</CategoryIcon>
-              <h3>AI/ML & Development Tools</h3>
+              <h3>AI & LLM</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>🧠</SkillIcon>AWS Bedrock</SkillChip>
-              <SkillChip><SkillIcon>💬</SkillIcon>ChatGPT/GPT-4</SkillChip>
-              <SkillChip><SkillIcon>🤖</SkillIcon>GitHub Copilot</SkillChip>
-              <SkillChip><SkillIcon>📚</SkillIcon>RAG Pipeline</SkillChip>
-              <SkillChip><SkillIcon>🔍</SkillIcon>FAISS Vectors</SkillChip>
+              <SkillChip><SkillIcon>📚</SkillIcon>RAG</SkillChip>
+              <SkillChip><SkillIcon>🔍</SkillIcon>FAISS</SkillChip>
+              <SkillChip><SkillIcon>🧬</SkillIcon>Titan Embeddings</SkillChip>
+              <SkillChip><SkillIcon>🔌</SkillIcon>MCP Servers</SkillChip>
+              <SkillChip><SkillIcon>🤖</SkillIcon>Agentic AI</SkillChip>
+              <SkillChip><SkillIcon>✍️</SkillIcon>Prompt Engineering</SkillChip>
+              <SkillChip><SkillIcon>👨‍💻</SkillIcon>GitHub Copilot</SkillChip>
+              <SkillChip><SkillIcon>💬</SkillIcon>Claude AI</SkillChip>
               <SkillChip><SkillIcon>🔎</SkillIcon>Elasticsearch</SkillChip>
-              <SkillChip><SkillIcon>⚡</SkillIcon>FastAPI</SkillChip>
               <SkillChip><SkillIcon>🌐</SkillIcon>WebSocket</SkillChip>
             </SkillsList>
           </CategoryCard>
 
-          {/* MESSAGING & TOOLS */}
           <CategoryCard
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -232,27 +224,28 @@ export default function Skills() {
           >
             <CategoryHeader>
               <CategoryIcon>🔧</CategoryIcon>
-              <h3>Messaging & Tools</h3>
+              <h3>Data, Testing & Observability</h3>
             </CategoryHeader>
-
             <SkillsList>
               <SkillChip><SkillIcon>📡</SkillIcon>Kafka</SkillChip>
-              <SkillChip><SkillIcon>🔷</SkillIcon>Event Hub</SkillChip>
               <SkillChip><SkillIcon>⏱️</SkillIcon>Temporal</SkillChip>
               <SkillChip><SkillIcon>⚡</SkillIcon>Apache Spark</SkillChip>
               <SkillChip><SkillIcon>🔄</SkillIcon>Apache Airflow</SkillChip>
+              <SkillChip><SkillIcon>🐘</SkillIcon>Hadoop</SkillChip>
+              <SkillChip><SkillIcon>🧱</SkillIcon>Databricks</SkillChip>
               <SkillChip><SkillIcon>🧪</SkillIcon>JUnit 5</SkillChip>
               <SkillChip><SkillIcon>🧰</SkillIcon>Mockito</SkillChip>
               <SkillChip><SkillIcon>📊</SkillIcon>Gatling</SkillChip>
+              <SkillChip><SkillIcon>🛡️</SkillIcon>Resilience4j</SkillChip>
+              <SkillChip><SkillIcon>🔭</SkillIcon>OpenTelemetry</SkillChip>
+              <SkillChip><SkillIcon>📈</SkillIcon>Prometheus</SkillChip>
               <SkillChip><SkillIcon>📘</SkillIcon>Swagger</SkillChip>
-              <SkillChip><SkillIcon>📦</SkillIcon>Terraform</SkillChip>
-              <SkillChip><SkillIcon>🐧</SkillIcon>Linux</SkillChip>
-              <SkillChip><SkillIcon>💡</SkillIcon>IntelliJ IDEA</SkillChip>
+              <SkillChip><SkillIcon>🩺</SkillIcon>JVM Tuning</SkillChip>
             </SkillsList>
           </CategoryCard>
 
         </CategoriesGrid>
       </Wrapper>
     </Section>
-  );
+  )
 }

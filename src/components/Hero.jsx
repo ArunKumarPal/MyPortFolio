@@ -89,6 +89,19 @@ const Title = styled.h2`
   }
 `;
 
+const Tagline = styled.p`
+  display: inline-block;
+  margin: -0.8rem 0 1.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+`;
+
 const Description = styled.p`
   font-size: 1.15rem;
   line-height: 1.7;
@@ -122,19 +135,21 @@ const PrimaryBtn = styled.a`
   transition: 0.3s ease;
 
   &:hover {
-    background: #1457c6;
+    background: var(--accent-gradient);
     color: #fff;
+    text-decoration: none;
   }
 `;
 
 const OutlineBtn = styled(PrimaryBtn)`
   background: transparent;
   color: #fff;
-  border: 2px solid #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
 
   &:hover {
     background: #fff;
     color: #1457c6;
+    border-color: #fff;
   }
 `;
 
@@ -239,12 +254,12 @@ export default function Hero() {
           <Greeting>Hello, I'm</Greeting>
           <Name>Arun Pal</Name>
           <Title>Senior Java Backend Engineer</Title>
+          <Tagline>Microservices · Cloud · AI</Tagline>
 
           <Description>
-            Senior Backend Engineer with 7+ years building scalable, high-performance enterprise systems 
-            using Java, Spring Boot, Microservices, and Cloud technologies. Expert in AI-powered development 
-            (GitHub Copilot, AWS Bedrock, ChatGPT/GPT-4), distributed systems, and performance optimization 
-            with a strong focus on clean architecture, reliability, and innovation.
+            8+ years delivering scalable Java microservices and production AI systems with Spring Boot,
+            Micronaut, AWS, and Kubernetes. Built a production RAG chatbot on AWS Bedrock (100+ concurrent
+            users, 99.5% uptime) and Python MCP servers that let AI agents automate infrastructure.
           </Description>
 
           <ButtonRow>

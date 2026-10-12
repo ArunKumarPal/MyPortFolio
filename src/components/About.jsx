@@ -1,472 +1,433 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
-
-// =========================
-// Styled Components
-// =========================
+import { motion, useInView, animate } from "framer-motion";
+import {
+  FaServer, FaCloud, FaRobot, FaStream,
+  FaMapMarkerAlt, FaBriefcase, FaBuilding, FaCode,
+  FaCheckCircle, FaArrowRight
+} from "react-icons/fa";
 
 const Section = styled.section`
-  padding: 6rem 3rem;
-  background: #f7f9fc;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 6rem 2rem;
+  background: var(--bg-s2);
 
   @media (max-width: 900px) {
-    padding: 4rem 1.5rem;
+    padding: 4rem 1rem;
   }
 `;
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
-const Heading = styled.h2`
-  font-size: 3rem;
-  font-weight: 700;
+const Eyebrow = styled.p`
   text-align: center;
-  color: #1c1c1c;
-  margin-bottom: 2rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+`;
+
+const Heading = styled.h2`
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--text-primary);
+  margin: 0 0 3rem;
 
   span {
-    color: #1457c6;
-  }
-
-  @media (max-width: 900px) {
-    font-size: 2.4rem;
-  }
-`;
-
-const TabNav = styled.div`
-  display: flex;
-  gap: 0.8rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-`;
-
-const TabBtn = styled.button`
-  padding: 0.7rem 1.3rem;
-  border-radius: 999px;
-  border: none;
-  background: ${(p) => (p.$active ? "linear-gradient(90deg,#1457c6,#764ba2)" : "rgba(255,255,255,0.6)")};
-  color: ${(p) => (p.$active ? "#fff" : "#16324a")};
-  font-weight: 700;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid ${(p) => (p.$active ? "transparent" : "rgba(20, 87, 198, 0.2)")};
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(20, 87, 198, 0.2);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 `;
 
-const ContentWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const Card = styled(motion.div)`
-  width: 100%;
-  max-width: 950px;
-  background: rgba(255, 255, 255, 0.5);
+const Glass = styled(motion.div)`
+  background: var(--bg-card);
   backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
   border-radius: 20px;
-  padding: 2.5rem;
-  border-left: 6px solid #1457c6;
-  box-shadow: 0 16px 40px rgba(12, 38, 73, 0.1);
+  box-shadow: 0 14px 36px var(--shadow-card);
+`;
 
-  @media (max-width: 900px) {
-    padding: 1.8rem;
+const TopGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const Paragraph = styled.p`
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #444;
-  margin-bottom: 1.5rem;
-  text-align: left;
-`;
+const Intro = styled(Glass)`
+  padding: 2.2rem;
+  border-left: 6px solid var(--accent);
 
-const SubHeading = styled.h3`
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #1457c6;
-  margin: 0 0 1.5rem 0;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
+  h3 {
+    margin: 0 0 1rem;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
 
-const Controls = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-top: 2rem;
-`;
+  p {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-body);
+  }
 
-const NavBtn = styled.button`
-  padding: 0.7rem 1.2rem;
-  border-radius: 10px;
-  border: 1px solid rgba(20, 87, 198, 0.3);
-  background: #fff;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #1457c6;
-    color: #fff;
-    transform: scale(1.1);
+  strong {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
   }
 `;
 
-const BulletList = styled.ul`
+const Facts = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
-`;
+  margin: 1.4rem 0 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
 
-const BulletItem = styled.li`
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #444;
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-  position: relative;
-  text-align: left;
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
 
-  &:before {
-    content: "▹";
-    position: absolute;
-    left: 0;
-    color: #1457c6;
-    font-size: 1.5rem;
-    font-weight: bold;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--text-body);
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
   }
 `;
 
-const HighlightBox = styled.div`
-  background: rgba(20, 87, 198, 0.08);
-  border-left: 4px solid #1457c6;
-  padding: 1.2rem 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
+const CTA = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--shadow-card-hover);
+  }
 `;
 
-const StatGrid = styled.div`
+const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin: 1.5rem 0;
+  align-content: start;
 `;
 
-const StatCard = styled.div`
-  background: rgba(255, 255, 255, 0.6);
-  padding: 1rem;
-  border-radius: 12px;
+const Stat = styled(Glass)`
+  padding: 1.4rem 1.2rem;
   text-align: center;
-  border: 1px solid rgba(20, 87, 198, 0.2);
+  transition: transform 0.2s ease;
 
-  .number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #1457c6;
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .value {
     display: block;
+    font-size: 2.1rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .label {
-    font-size: 0.95rem;
-    color: #666;
+    display: block;
     margin-top: 0.3rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
   }
 `;
 
-// =========================
-// About Component
-// =========================
+const SubHeading = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 1.4rem;
+  text-align: center;
+`;
 
-// Data for different pages
-const aboutPages = [
+const FocusGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.4rem;
+  margin-bottom: 3rem;
+`;
+
+const FocusCard = styled(Glass)`
+  padding: 1.6rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--accent-gradient);
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px var(--shadow-card-hover);
+  }
+
+  h4 {
+    margin: 0.9rem 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  p {
+    margin: 0 0 1rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+`;
+
+const IconBox = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  color: #fff;
+  background: var(--accent-gradient);
+`;
+
+const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  span {
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border-accent);
+  }
+`;
+
+const Principles = styled(Glass)`
+  padding: 1.8rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem 2rem;
+  background: var(--highlight-bg);
+  border: 1px solid var(--border-accent);
+
+  > div {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--accent);
+  }
+
+  strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    margin-bottom: 0.2rem;
+  }
+
+  span {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+`;
+
+const FACTS = [
+  { icon: <FaBriefcase />, label: "Role", value: "Senior Software Engineer" },
+  { icon: <FaBuilding />, label: "Company", value: "Precisely Software & Data" },
+  { icon: <FaMapMarkerAlt />, label: "Location", value: "Ghaziabad, India" },
+  { icon: <FaCode />, label: "Primary Stack", value: "Java · Spring Boot · AWS" }
+];
+
+const STATS = [
+  { to: 8, suffix: "+", label: "Years building backend systems" },
+  { to: 30, suffix: "%", label: "Faster API response times" },
+  { to: 40, suffix: "%", label: "Fewer production incidents" },
+  { to: 25, suffix: "%", label: "Fewer integration defects" },
+  { to: 99.5, suffix: "%", decimals: 1, label: "Uptime on production RAG chatbot" },
+  { to: 60, suffix: "%", label: "AI infrastructure cost cut" }
+];
+
+const FOCUS = [
   {
-    id: "overview",
-    title: "Overview",
-    content: (
-      <>
-        <Paragraph>
-          I'm a <strong>Senior Java Backend Engineer</strong> with <strong>7+ years of professional experience</strong> in 
-          designing and building enterprise-grade backend systems, microservices architectures, and distributed applications. 
-          Currently at <strong>Precisely Software & Data</strong>, I architect scalable APIs that power mission-critical 
-          data solutions, processing millions of requests daily while maintaining optimal performance and reliability.
-        </Paragraph>
-        
-        <Paragraph>
-          Skilled in leveraging <strong>AI-assisted development tools</strong> including <strong>GitHub Copilot</strong>, 
-          <strong>AWS Bedrock</strong>, and <strong>ChatGPT/GPT-4</strong> to accelerate development velocity, enhance code quality, 
-          improve delivery timelines, and build intelligent AI-powered solutions. Expertise in implementing RAG (Retrieval-Augmented Generation) 
-          pipelines, vector databases, and production-ready AI chatbots.
-        </Paragraph>
-
-        <HighlightBox>
-          <StatGrid>
-            <StatCard>
-              <span className="number">7+</span>
-              <span className="label">Years Experience</span>
-            </StatCard>
-            <StatCard>
-              <span className="number">40%</span>
-              <span className="label">Reduced Production Issues</span>
-            </StatCard>
-            <StatCard>
-              <span className="number">30%</span>
-              <span className="label">Improved API Performance</span>
-            </StatCard>
-            <StatCard>
-              <span className="number">25%</span>
-              <span className="label">Cloud Cost Optimization</span>
-            </StatCard>
-          </StatGrid>
-        </HighlightBox>
-      </>
-    )
+    icon: <FaServer />,
+    title: "Backend & Microservices",
+    text: "Secure, high-throughput Java APIs with OAuth2/JWT, multithreading, Redis caching, and tuned DB access.",
+    tags: ["Java", "Spring Boot", "Micronaut", "REST", "JVM Tuning"]
   },
   {
-    id: "expertise",
-    title: "Core Expertise",
-    content: (
-      <>
-        <SubHeading>🎯 Technical Specializations</SubHeading>
-        <BulletList>
-          <BulletItem>
-            <strong>AI-Powered Development:</strong> Leveraging GitHub Copilot, AWS Bedrock, ChatGPT/GPT-4 for accelerated 
-            development, code generation, refactoring, test automation, and building production-ready AI chatbots with RAG pipelines
-          </BulletItem>
-          <BulletItem>
-            <strong>Backend Architecture:</strong> Designed and implemented microservices using Spring Boot, Micronaut, 
-            Spring Cloud with fault-tolerant patterns, circuit breakers, distributed tracing, and SOLID principles
-          </BulletItem>
-          <BulletItem>
-            <strong>API Development:</strong> Built RESTful APIs with OAuth2/JWT authentication, rate limiting, 
-            comprehensive error handling, and OpenAPI documentation serving millions of requests
-          </BulletItem>
-          <BulletItem>
-            <strong>Cloud Native Solutions:</strong> Deployed and optimized systems across AWS (EC2, Lambda, S3, Bedrock), 
-            GCP, and Azure with containerization (Docker/Kubernetes), infrastructure as code, and CI/CD automation
-          </BulletItem>
-          <BulletItem>
-            <strong>Distributed Systems:</strong> Architected event-driven workflows using Temporal, Kafka, Redis, 
-            Apache Spark, Airflow, and async processing patterns for high-throughput data pipelines
-          </BulletItem>
-          <BulletItem>
-            <strong>Performance Engineering:</strong> Optimized API response times by 30% through intelligent caching, 
-            multithreading, database query optimization, JVM tuning, and resource management
-          </BulletItem>
-        </BulletList>
-      </>
-    )
+    icon: <FaRobot />,
+    title: "AI & Agentic Systems",
+    text: "Production RAG on AWS Bedrock, Python MCP servers for AI agents, and design-doc-to-service automation.",
+    tags: ["AWS Bedrock", "RAG", "FAISS", "MCP", "Claude AI"]
   },
   {
-    id: "highlights",
-    title: "Achievements",
-    content: (
-      <>
-        <SubHeading>💼 Professional Highlights</SubHeading>
-        <BulletList>
-          <BulletItem>
-            Built production <strong>AI-Powered Documentation Assistant</strong> using AWS Bedrock with RAG pipeline (FAISS, 
-            vector embeddings), achieving 95% answer accuracy through multi-stage validation, WebSocket streaming, and intelligent caching strategies
-          </BulletItem>
-          <BulletItem>
-            Leveraged <strong>GitHub Copilot</strong> for code generation, refactoring, and test automation, improving development 
-            velocity by 40% while maintaining code quality and consistency across teams
-          </BulletItem>
-          <BulletItem>
-            Architected <strong>GeoPlaces API</strong> with Elasticsearch for geospatial search, implementing advanced 
-            Query DSL, geo-distance queries, ETL pipelines with Logstash, and processing large-scale location data with sub-500ms response times
-          </BulletItem>
-          <BulletItem>
-            Led development of <strong>API Gateway</strong> with centralized access control, token validation, 
-            IP-based rate limiting, and YAML-based routing for enterprise clients
-          </BulletItem>
-          <BulletItem>
-            Built <strong>Bulk File Processing System</strong> handling S3 → Kafka → Spark → S3 pipeline with 
-            Temporal orchestration, automatic retries, and Redis-based status tracking
-          </BulletItem>
-          <BulletItem>
-            Developed geocoding, autocomplete, and verification APIs for <strong>Developer Portal</strong> using 
-            Java, Go, and microservices architecture
-          </BulletItem>
-          <BulletItem>
-            Reduced production incidents by <strong>40%</strong> through rigorous code reviews, adherence to 
-            SOLID principles, and comprehensive testing strategies
-          </BulletItem>
-          <BulletItem>
-            Achieved <strong>25% cloud cost reduction</strong> by optimizing Kubernetes resource allocation, 
-            implementing auto-scaling, and rightsizing workloads
-          </BulletItem>
-          <BulletItem>
-            Mentored development teams on Java best practices, design patterns, microservices architecture, 
-            and modern development workflows
-          </BulletItem>
-        </BulletList>
-      </>
-    )
+    icon: <FaCloud />,
+    title: "Cloud & DevOps",
+    text: "Cloud-native services on AWS and Kubernetes with API Gateway hardening, CI/CD, and Datadog observability.",
+    tags: ["AWS", "Kubernetes", "Docker", "GitHub Actions", "Datadog"]
   },
   {
-    id: "skills",
-    title: "Tech Stack",
-    content: (
-      <>
-        <SubHeading>🔧 Technical Proficiency</SubHeading>
-        <BulletList>
-          <BulletItem>
-            <strong>Languages:</strong> Java 8-21 (Expert), Python, SQL, Go, JavaScript
-          </BulletItem>
-          <BulletItem>
-            <strong>Frameworks:</strong> Spring Boot, Micronaut, Spring Cloud, Hibernate/JPA, FastAPI, Reactive Programming
-          </BulletItem>
-          <BulletItem>
-            <strong>AI/ML Tools & Platforms:</strong> AWS Bedrock (Claude, Titan), GitHub Copilot, ChatGPT/GPT-4, RAG (Retrieval-Augmented Generation), 
-            FAISS Vector Databases, LangChain, Elasticsearch for AI Search
-          </BulletItem>
-          <BulletItem>
-            <strong>Databases:</strong> PostgreSQL, MySQL, Oracle DB, MongoDB, Redis (caching & pub-sub), Elasticsearch
-          </BulletItem>
-          <BulletItem>
-            <strong>Cloud & DevOps:</strong> AWS (EC2, Lambda, S3, Bedrock AI), Azure, GCP, Docker, Kubernetes, Terraform, Jenkins, CI/CD, 
-            Datadog, SonarQube, Blackduck, Checkmarx
-          </BulletItem>
-          <BulletItem>
-            <strong>Big Data & Distributed:</strong> Apache Spark, Apache Airflow, Temporal Workflow, Hadoop, Databricks, Kafka, Azure Event Hub
-          </BulletItem>
-          <BulletItem>
-            <strong>Testing & Tools:</strong> JUnit 5, TestNG, Mockito, Gatling, WebSocket, Logstash, Swagger/OpenAPI, Git, SVN
-          </BulletItem>
-        </BulletList>
-
-        <SubHeading style={{ marginTop: "2rem" }}>🏆 Recognition & Certifications</SubHeading>
-        <BulletList>
-          <BulletItem>
-            <strong>5x Award Winner</strong> at Precisely Software & Data: 2× Spot Awards (Nov 2023, Jun 2022), 2× Stellar Performer Awards 
-            (Jan 2023, Jan 2022), 1× Team Award (Q1 2024) for exceptional technical contributions, leadership, and innovation
-          </BulletItem>
-          <BulletItem>
-            <strong>Certified Professional:</strong> AWS SimuLearn Cloud Practitioner (2025), AWS Cloud Computing (2023), Docker Containerization, 
-            Python Programming, Spring Boot Microservices, Jenkins CI/CD, Regular Expressions, and Android Development
-          </BulletItem>
-          <BulletItem>
-            <strong>HackerRank Verified:</strong> Java, Problem Solving, SQL, CSS - demonstrating strong algorithmic and programming proficiency
-          </BulletItem>
-        </BulletList>
-      </>
-    )
-  },
-  {
-    id: "philosophy",
-    title: "Philosophy",
-    content: (
-      <>
-        <SubHeading>🚀 What Drives Me</SubHeading>
-        <Paragraph>
-          I'm passionate about building systems that scale gracefully under pressure and deliver real business value. 
-          Whether it's architecting fault-tolerant distributed systems, optimizing database queries for millisecond response times, 
-          or mentoring teams on clean code principles - I thrive on solving complex technical challenges with elegant solutions.
-        </Paragraph>
-
-        <Paragraph>
-          Beyond writing production-grade code, I believe in comprehensive documentation, thorough testing, and building 
-          maintainable systems that teams can confidently iterate on. My open-source projects and technical contributions 
-          reflect my commitment to quality engineering, continuous learning, and sharing knowledge with the developer community.
-        </Paragraph>
-
-        <HighlightBox style={{ marginTop: "2rem" }}>
-          <Paragraph style={{ margin: 0, textAlign: "center", fontSize: "1.2rem", color: "#1457c6", fontWeight: "600" }}>
-            "Clean code, scalable systems, and continuous innovation - that's my engineering philosophy."
-          </Paragraph>
-        </HighlightBox>
-      </>
-    )
+    icon: <FaStream />,
+    title: "Data & Distributed",
+    text: "Fault-tolerant large-file and streaming pipelines with Kafka, Spark, Temporal, and Databricks.",
+    tags: ["Kafka", "Spark", "Temporal", "Databricks", "S3"]
   }
 ];
 
-export default function About() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const autoRef = useRef(null);
+const PRINCIPLES = [
+  { title: "Clean, reviewable code", text: "SOLID principles and rigorous code reviews across modules." },
+  { title: "Observability first", text: "Dashboards, tracing, and alerts before features go live." },
+  { title: "AI as a force multiplier", text: "Spec-driven, LLM-assisted delivery with peer-reviewed quality." },
+  { title: "Grow the team", text: "Mentoring through pairing, reviews, and Agile best practices." }
+];
 
-  const length = aboutPages.length;
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 }
+};
 
-  // Auto slide every 8 seconds
+function CountUp({ to, decimals = 0, suffix }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+  const [value, setValue] = useState(0);
+
   useEffect(() => {
-    if (paused) return;
-    autoRef.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % length);
-    }, 8000);
-    return () => clearInterval(autoRef.current);
-  }, [paused, length]);
+    if (!inView) return;
+    const controls = animate(0, to, { duration: 1.4, ease: "easeOut", onUpdate: setValue });
+    return () => controls.stop();
+  }, [inView, to]);
 
-  const next = () => {
-    setPaused(true);
-    setIndex((i) => (i + 1) % length);
-  };
+  return <span ref={ref} className="value">{value.toFixed(decimals)}{suffix}</span>;
+}
 
-  const prev = () => {
-    setPaused(true);
-    setIndex((i) => (i - 1 + length) % length);
-  };
-
-  const currentPage = aboutPages[index];
-
+export default function About() {
   return (
     <Section id="about">
       <Container>
-        <Heading>
-          About <span>Me</span>
-        </Heading>
+        <Eyebrow>Get to know me</Eyebrow>
+        <Heading>About <span>Me</span></Heading>
 
-        {/* Tab Navigation */}
-        <TabNav>
-          {aboutPages.map((page, i) => (
-            <TabBtn
-              key={page.id}
-              $active={i === index}
-              onClick={() => {
-                setIndex(i);
-                setPaused(true);
-              }}
-            >
-              {page.title}
-            </TabBtn>
+        <TopGrid>
+          <Intro {...fadeUp} transition={{ duration: 0.6 }}>
+            <h3>I build Java backends that scale, and the AI tooling that helps teams ship them faster.</h3>
+            <p>
+              I'm a <strong>Senior Java Backend Engineer</strong> with <strong>8+ years</strong> of experience
+              delivering scalable microservices and production AI systems. At <strong>Precisely</strong>, I design
+              secure, high-performance APIs with Spring Boot and Micronaut, deployed on AWS and Kubernetes.
+            </p>
+            <p>
+              Lately I've focused on <strong>agentic AI</strong>: a RAG documentation assistant on AWS Bedrock,
+              Python <strong>MCP servers</strong> that let agents change live infrastructure, and a bootstrapper
+              that turns a design doc into a production-ready service in under an hour.
+            </p>
+
+            <Facts>
+              {FACTS.map(f => (
+                <li key={f.label}>
+                  {f.icon}
+                  <div><small>{f.label}</small>{f.value}</div>
+                </li>
+              ))}
+            </Facts>
+
+            <CTA href="#contact">Let's work together <FaArrowRight /></CTA>
+          </Intro>
+
+          <StatsGrid>
+            {STATS.map((s, i) => (
+              <Stat key={s.label} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }}>
+                <CountUp to={s.to} decimals={s.decimals} suffix={s.suffix} />
+                <span className="label">{s.label}</span>
+              </Stat>
+            ))}
+          </StatsGrid>
+        </TopGrid>
+
+        <SubHeading>What I Do</SubHeading>
+        <FocusGrid>
+          {FOCUS.map((f, i) => (
+            <FocusCard key={f.title} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }}>
+              <IconBox aria-hidden="true">{f.icon}</IconBox>
+              <h4>{f.title}</h4>
+              <p>{f.text}</p>
+              <Tags>{f.tags.map(t => <span key={t}>{t}</span>)}</Tags>
+            </FocusCard>
           ))}
-        </TabNav>
+        </FocusGrid>
 
-        {/* Content Slider */}
-        <ContentWrapper>
-          <AnimatePresence mode="wait">
-            <Card
-              key={currentPage.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-            >
-              {currentPage.content}
-
-              <Controls>
-                <NavBtn onClick={prev}>◀</NavBtn>
-                <NavBtn onClick={next}>▶</NavBtn>
-              </Controls>
-            </Card>
-          </AnimatePresence>
-        </ContentWrapper>
+        <SubHeading>How I Work</SubHeading>
+        <Principles {...fadeUp} transition={{ duration: 0.6 }}>
+          {PRINCIPLES.map(p => (
+            <div key={p.title}>
+              <FaCheckCircle />
+              <div>
+                <strong>{p.title}</strong>
+                <span>{p.text}</span>
+              </div>
+            </div>
+          ))}
+        </Principles>
       </Container>
     </Section>
   );

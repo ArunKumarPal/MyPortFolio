@@ -23,6 +23,7 @@ export const getVisitorInfo = async () => {
       browser: getBrowserInfo(),
       os: getOSInfo(),
       device: getDeviceType(),
+      browserProfile: await getBrowserProfile(),
       
       // Screen Info
       screenResolution: `${window.screen.width}x${window.screen.height}`,
@@ -130,6 +131,62 @@ const getDeviceType = () => {
 };
 
 /**
+ * Try to detect browser profile information
+ * Note: Cannot access Google/Microsoft account emails directly for privacy reasons
+ * Can only detect browser-level information
+ */
+const getBrowserProfile = async () => {
+  const profileInfo = {
+    isLoggedIn: "Unknown",
+    browserType: getBrowserInfo(),
+    capabilities: {
+      cookies: navigator.cookieEnabled,
+      localStorage: typeof(Storage) !== "undefined",
+      sessionStorage: typeof(Storage) !== "undefined",
+      indexedDB: !!window.indexedDB,
+    },
+    plugins: [],
+    doNotTrack: navigator.doNotTrack || "Not set",
+  };
+
+  // Get installed plugins (limited in modern browsers)
+  if (navigator.plugins && navigator.plugins.length > 0) {
+    profileInfo.plugins = Array.from(navigator.plugins).map(p => p.name);
+  }
+
+  // Check if browser has credential management API (indicates possible login capability)
+  if (window.PasswordCredential || window.FederatedCredential) {
+    profileInfo.hasCredentialManagement = true;
+  }
+
+  // Check for WebAuthn support (modern authentication)
+  if (window.PublicKeyCredential) {
+    profileInfo.hasWebAuthn = true;
+  }
+
+  // Platform info
+  if (navigator.userAgentData) {
+    try {
+      const uaData = await navigator.userAgentData.getHighEntropyValues([
+        'platform',
+        'platformVersion',
+        'architecture',
+        'model',
+        'uaFullVersion'
+      ]);
+      profileInfo.platform = uaData.platform;
+      profileInfo.platformVersion = uaData.platformVersion;
+      profileInfo.architecture = uaData.architecture;
+    } catch (e) {
+      // High entropy values may require permission
+      profileInfo.platform = navigator.userAgentData.platform;
+    }
+  }
+
+  return profileInfo;
+};
+
+/**
  * Send visitor info via EmailJS
  */
 export const sendVisitorNotification = async (visitorInfo) => {
@@ -163,7 +220,8 @@ export const sendVisitorNotification = async (visitorInfo) => {
                `Device: ${visitorInfo.device}\n` +
                `Operating System: ${visitorInfo.os}\n` +
                `Browser: ${visitorInfo.browser}\n` +
-               `Screen Resolution: ${visitorInfo.screenResolution}\n\n` +
+               `Screen Resolution: ${visitorInfo.screenResolution}\n` +
+               `Browser Profile: ${JSON.stringify(visitorInfo.browserProfile, null, 2)}\n\n` +
                `🕐 Visit Details:\n` +
                `━━━━━━━━━━━━━━━━━━━━\n` +
                `Time: ${visitorInfo.visitTime}\n` +

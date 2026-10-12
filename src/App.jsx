@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -11,14 +11,34 @@ import Contact from './components/Contact'
 import { trackVisitor } from './utils/visitorTracker'
 
 export default function App() {
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') === 'dark'
+  })
+  const [scrollProgress, setScrollProgress] = useState(0)
+
   useEffect(() => {
-    // Track visitor when app loads
-    trackVisitor();
-  }, []);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrolled = window.scrollY
+      const total = document.documentElement.scrollHeight - window.innerHeight
+      setScrollProgress(total > 0 ? (scrolled / total) * 100 : 0)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    trackVisitor()
+  }, [])
 
   return (
     <>
-      <Header />
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <Header isDark={isDark} toggleTheme={() => setIsDark(d => !d)} />
       <div>
         <Hero />
         <About />
